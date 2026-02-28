@@ -1,16 +1,30 @@
-## Hi there 👋
+# Superkart
 
-<!--
-**Superkart/Superkart** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Hi, I’m **Superkart**.
 
-Here are some ideas to get you started:
+## Projects (grouped by tech stack)
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### TypeScript / JavaScript
+- _Coming soon_
+
+### Python
+- _Coming soon_
+
+### Go
+- _Coming soon_
+
+### Java / Kotlin
+- _Coming soon_
+
+### C / C++ / Rust
+- _Coming soon_
+
+### Other / Tools / Experiments
+- _Coming soon_
+
+## Skills
+- Languages: _Coming soon_
+- Frameworks/Tools: _Coming soon_
+
+## Contact
+- GitHub: https://github.com/Superkart
