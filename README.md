@@ -15,7 +15,7 @@
 
 ## 🚀 About Me
 
-I'm a developer with a broad technical portfolio spanning **full-stack web applications**, **game development**, **data science**, and **VR/AR systems**. I enjoy solving real problems end-to-end — from backend architecture and APIs to front-end interfaces, from simulation engines to data pipelines. I'm equally comfortable writing C++ for performance-critical systems, Java services in Spring Boot, Python for data analysis, and C# inside a Unity game engine.
+I'm a developer with a broad technical portfolio spanning **full-stack web applications**, **game development**, **data science**, and **VR/AR systems**. I enjoy solving real problems end-to-end from backend architecture and APIs to front-end interfaces, from simulation engines to data pipelines. I'm equally comfortable writing C++ for performance-critical systems, Java services in Spring Boot, Python for data analysis, and C# inside a Unity game engine.
 
 ---
 
