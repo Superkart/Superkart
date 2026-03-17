@@ -1,0 +1,43 @@
+name: Update README
+
+on:
+  schedule:
+    # Runs every day at 00:00 UTC — picks up any repos created since the last run
+    - cron: '0 0 * * *'
+  # Allow a manual trigger from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to commit the updated README
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Update README sections
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_readme.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          if git diff --cached --quiet; then
+            echo "README.md is already up to date — nothing to commit."
+          else
+            git commit -m "chore: auto-update README with latest repositories [skip ci]"
+            git push
+          fi

@@ -126,6 +126,7 @@ A mobile AR app that places a detailed 3D model of an AC motor mid-air using the
 
 Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedural generation, and custom shaders:
 
+<!-- UNITY-GAMES-START -->
 | Project | Description | Tech |
 |---|---|---|
 | [MiniTankMania](https://github.com/Superkart/MiniTankMania) | 3D wave-based tank combat — miniature player tank vs escalating enemy waves | Unity · C# |
@@ -140,6 +141,7 @@ Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedur
 | [Mario Game](https://github.com/Superkart/Mario-Game) | 2D side-scroller inspired by classic Mario mechanics | Unity · C# |
 | [Quiz Defender](https://github.com/Superkart/QuizDefender) | Educational quiz-based tower defense hybrid | Unity · C# |
 | [Shooter Concept](https://github.com/Superkart/ShooterConcept) | Third-person shooter movement and combat prototype | Unity |
+<!-- UNITY-GAMES-END -->
 
 ---
 
@@ -147,22 +149,26 @@ Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedur
 
 Structured, version-controlled practice documenting continuous growth:
 
+<!-- LEARNING-REPOS-START -->
 | Repo | Focus |
 |---|---|
 | [Python Journey](https://github.com/Superkart/Python_Journey) | Python fundamentals, YouTube tutorials, and LeetCode problems |
 | [C++ Journey](https://github.com/Superkart/Cpp_Journey) | C++ from basics to advanced — OOP, memory management, STL |
 | [Text-Based Game (C++)](https://github.com/Superkart/TextBasedGame_F) | Console RPG / adventure game written entirely in C++ |
+<!-- LEARNING-REPOS-END -->
 
 ---
 
 ### 🌐 Web Projects
 
+<!-- WEB-PROJECTS-START -->
 | Repo | Description | Tech |
 |---|---|---|
 | [MyExpenseTracker](https://github.com/Superkart/MyExpenseTracker) | Personal finance tracking web app | TypeScript |
 | [PortfolioApp](https://github.com/Superkart/PortfolioApp) | Personal portfolio website | JavaScript |
 | [FirstWebAppDeployed](https://github.com/Superkart/FirstWebAppDeployed) | First deployed web application | Astro |
 | [BasicCounterWebPage](https://github.com/Superkart/BasicCounterWebPage) | Interactive counter page | TypeScript |
+<!-- WEB-PROJECTS-END -->
 
 ---
 
