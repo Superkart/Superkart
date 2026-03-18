@@ -155,6 +155,7 @@ Structured, version-controlled practice documenting continuous growth:
 | [Python Journey](https://github.com/Superkart/Python_Journey) | Python fundamentals, YouTube tutorials, and LeetCode problems |
 | [C++ Journey](https://github.com/Superkart/Cpp_Journey) | C++ from basics to advanced — OOP, memory management, STL |
 | [Text-Based Game (C++)](https://github.com/Superkart/TextBasedGame_F) | Console RPG / adventure game written entirely in C++ |
+| [Drone_Simulator](https://github.com/Superkart/Drone_Simulator) | — |
 <!-- LEARNING-REPOS-END -->
 
 ---
@@ -168,6 +169,8 @@ Structured, version-controlled practice documenting continuous growth:
 | [PortfolioApp](https://github.com/Superkart/PortfolioApp) | Personal portfolio website | JavaScript |
 | [FirstWebAppDeployed](https://github.com/Superkart/FirstWebAppDeployed) | First deployed web application | Astro |
 | [BasicCounterWebPage](https://github.com/Superkart/BasicCounterWebPage) | Interactive counter page | TypeScript |
+| [DataScience1](https://github.com/Superkart/DataScience1) | This is a repository that contains the homework 1 of my Data Science class | HTML |
+| [hw5](https://github.com/Superkart/hw5) | — | TypeScript |
 <!-- WEB-PROJECTS-END -->
 
 ---
