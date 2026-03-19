@@ -180,6 +180,11 @@ Structured, version-controlled practice documenting continuous growth:
 <!-- ML-AI-PROJECTS-START -->
 | Repo | Description | Tech |
 |---|---|---|
+| [Applied-ML-Case-Studies](https://github.com/Superkart/Applied-ML-Case-Studies) | — | Jupyter Notebook |
+| [DataScience1](https://github.com/Superkart/DataScience1) | This is a repository that contains the homework 1 of my Data Science class | HTML |
+| [ML-Foundations-Python-Numpy](https://github.com/Superkart/ML-Foundations-Python-Numpy) | — | Jupyter Notebook |
+| [ML-From-Scratch-Neural-Networks](https://github.com/Superkart/ML-From-Scratch-Neural-Networks) | — | Jupyter Notebook |
+| [Reddit_Moderator_Tool](https://github.com/Superkart/Reddit_Moderator_Tool) | — | Jupyter Notebook |
 <!-- ML-AI-PROJECTS-END -->
 
 ---
