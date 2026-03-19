@@ -175,6 +175,15 @@ Structured, version-controlled practice documenting continuous growth:
 
 ---
 
+### 🤖 ML & AI Projects
+
+<!-- ML-AI-PROJECTS-START -->
+| Repo | Description | Tech |
+|---|---|---|
+<!-- ML-AI-PROJECTS-END -->
+
+---
+
 ## 📈 GitHub Stats
 
 <p align="center">

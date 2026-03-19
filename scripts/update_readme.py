@@ -10,6 +10,7 @@ Sections managed (identified by HTML comment markers):
   - Unity Game Development Portfolio   <!-- UNITY-GAMES-START/END -->
   - Learning & Practice Repositories   <!-- LEARNING-REPOS-START/END -->
   - Web Projects                        <!-- WEB-PROJECTS-START/END -->
+    - ML & AI Projects                     <!-- ML-AI-PROJECTS-START/END -->
 
 Category rules (topics take priority over heuristics):
   unity    — topics: unity, game-development, game, unity3d
@@ -17,6 +18,12 @@ Category rules (topics take priority over heuristics):
   learning — topics: learning, practice, tutorial, education
              OR name contains: journey, learn, practice, exercise, tutorial
              OR language C++
+    ml_ai    — topics: ml, ai, machine-learning, deep-learning,
+                         artificial-intelligence, data-science, nlp, computer-vision
+                         OR language Jupyter Notebook
+                 OR language Python + description contains ML/AI terms
+                         OR name contains: ml, ai, machine-learning, deep-learning,
+                         neural, nlp, vision, datascience
   web      — topics: web, web-app, frontend, backend, website
              OR language TypeScript / JavaScript / HTML / CSS
 
@@ -57,6 +64,7 @@ MARKERS: dict[str, tuple[str, str]] = {
     "unity":    ("<!-- UNITY-GAMES-START -->",   "<!-- UNITY-GAMES-END -->"),
     "learning": ("<!-- LEARNING-REPOS-START -->", "<!-- LEARNING-REPOS-END -->"),
     "web":      ("<!-- WEB-PROJECTS-START -->",   "<!-- WEB-PROJECTS-END -->"),
+    "ml_ai":    ("<!-- ML-AI-PROJECTS-START -->", "<!-- ML-AI-PROJECTS-END -->"),
 }
 
 
@@ -100,21 +108,71 @@ def get_topics(repo_name: str) -> set[str]:
 
 # ── Categorisation ────────────────────────────────────────────────────────────
 def classify(repo: dict, topics: set[str]) -> str | None:
-    """Return 'unity', 'learning', 'web', or None if uncategorised."""
+    """Return 'unity', 'learning', 'web', 'ml_ai', or None if uncategorised."""
     language = repo.get("language") or ""
     name_lower = repo["name"].lower()
+    description_lower = (repo.get("description") or "").lower()
 
     # Topics take highest priority (explicit beats heuristic)
     if topics & {"unity", "game-development", "game", "unity3d"}:
         return "unity"
     if topics & {"learning", "practice", "tutorial", "education"}:
         return "learning"
+    if topics & {
+        "ml",
+        "ai",
+        "machine-learning",
+        "deep-learning",
+        "artificial-intelligence",
+        "data-science",
+        "nlp",
+        "computer-vision",
+    }:
+        return "ml_ai"
     if topics & {"web", "web-app", "frontend", "backend", "website"}:
         return "web"
 
     # Language / name heuristics
     if language in ("C#", "ShaderLab"):
         return "unity"
+    if language == "Jupyter Notebook":
+        return "ml_ai"
+    if language == "Python" and any(
+        k in description_lower
+        for k in (
+            "machine learning",
+            "deep learning",
+            "artificial intelligence",
+            "ai",
+            "ml",
+            "model",
+            "training",
+            "inference",
+            "dataset",
+            "transformer",
+            "neural",
+            "computer vision",
+            "nlp",
+        )
+    ):
+        return "ml_ai"
+    if any(
+        k in name_lower
+        for k in (
+            "machine-learning",
+            "deep-learning",
+            "datascience",
+            "data-science",
+            "neural",
+            "vision",
+            "nlp",
+            "_ml",
+            "-ml",
+            "_ai",
+            "-ai",
+        )
+    ) and language != "Python":
+        return "ml_ai"
     if any(k in name_lower for k in ("journey", "learn", "practice", "exercise", "tutorial")):
         return "learning"
     if language in ("TypeScript", "JavaScript", "HTML", "CSS"):
@@ -155,6 +213,9 @@ def build_new_row(repo: dict, category: str) -> str:
         return f"| [{name}]({url}) | {desc} | {_tech_label(repo, 'unity')} |"
     if category == "learning":
         return f"| [{name}]({url}) | {desc} |"
+    if category == "ml_ai":
+        tech = repo.get("language") or "—"
+        return f"| [{name}]({url}) | {desc} | {tech} |"
     # web
     tech = repo.get("language") or "—"
     return f"| [{name}]({url}) | {desc} | {tech} |"
@@ -182,7 +243,12 @@ def main() -> None:
         for cat, markers in MARKERS.items()
     }
 
-    new_rows: dict[str, list[str]] = {"unity": [], "learning": [], "web": []}
+    new_rows: dict[str, list[str]] = {
+        "unity": [],
+        "learning": [],
+        "web": [],
+        "ml_ai": [],
+    }
 
     for repo in all_repos:
         name = repo["name"]

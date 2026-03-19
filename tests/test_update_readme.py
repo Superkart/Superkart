@@ -97,6 +97,22 @@ class TestClassify(unittest.TestCase):
         repo = _repo("App", language=None)
         self.assertEqual(update_readme.classify(repo, {"web-app"}), "web")
 
+    def test_ml_topic_maps_to_ml_ai(self):
+        repo = _repo("ModelLab", language="Python")
+        self.assertEqual(update_readme.classify(repo, {"ml"}), "ml_ai")
+
+    def test_machine_learning_topic_maps_to_ml_ai(self):
+        repo = _repo("Classifier", language=None)
+        self.assertEqual(update_readme.classify(repo, {"machine-learning"}), "ml_ai")
+
+    def test_artificial_intelligence_topic_maps_to_ml_ai(self):
+        repo = _repo("AgentX", language=None)
+        self.assertEqual(update_readme.classify(repo, {"artificial-intelligence"}), "ml_ai")
+
+    def test_data_science_topic_maps_to_ml_ai(self):
+        repo = _repo("DataVision", language=None)
+        self.assertEqual(update_readme.classify(repo, {"data-science"}), "ml_ai")
+
     # ── Language / name heuristics (tier 2) ────────────────────────────────
 
     def test_csharp_language_maps_to_unity(self):
@@ -146,6 +162,26 @@ class TestClassify(unittest.TestCase):
     def test_css_maps_to_web(self):
         repo = _repo("Styles", language="CSS")
         self.assertEqual(update_readme.classify(repo, set()), "web")
+
+    def test_jupyter_notebook_maps_to_ml_ai(self):
+        repo = _repo("NotebookProject", language="Jupyter Notebook")
+        self.assertEqual(update_readme.classify(repo, set()), "ml_ai")
+
+    def test_python_description_with_ml_terms_maps_to_ml_ai(self):
+        repo = _repo("ClassifierLab", language="Python", description="Model training and inference on image dataset")
+        self.assertEqual(update_readme.classify(repo, set()), "ml_ai")
+
+    def test_python_name_only_ml_signal_does_not_map_to_ml_ai(self):
+        repo = _repo("vision-pipeline", language="Python", description=None)
+        self.assertIsNone(update_readme.classify(repo, set()))
+
+    def test_name_contains_deep_learning_maps_to_ml_ai(self):
+        repo = _repo("deep-learning-lab", language=None)
+        self.assertEqual(update_readme.classify(repo, set()), "ml_ai")
+
+    def test_name_contains_nlp_maps_to_ml_ai(self):
+        repo = _repo("tweet-nlp", language=None)
+        self.assertEqual(update_readme.classify(repo, set()), "ml_ai")
 
     # ── Uncategorised ───────────────────────────────────────────────────────
 
@@ -259,6 +295,13 @@ class TestBuildNewRow(unittest.TestCase):
         self.assertEqual(len(parts), 3)
         self.assertIn("TypeScript", row)
 
+    def test_ml_ai_row_has_three_columns(self):
+        repo = _repo("VisionModel", language="Python", description="Image classifier")
+        row = update_readme.build_new_row(repo, "ml_ai")
+        parts = [p.strip() for p in row.split("|") if p.strip()]
+        self.assertEqual(len(parts), 3)
+        self.assertIn("Python", row)
+
     def test_missing_description_falls_back_to_dash(self):
         repo = _repo("Silent", language="JavaScript", description=None)
         row = update_readme.build_new_row(repo, "web")
@@ -276,7 +319,7 @@ class TestBuildNewRow(unittest.TestCase):
 
     def test_url_contains_username_and_repo_name(self):
         repo = _repo("SpecialRepo", language="Python")
-        for category in ("unity", "learning", "web"):
+        for category in ("unity", "learning", "web", "ml_ai"):
             with self.subTest(category=category):
                 row = update_readme.build_new_row(repo, category)
                 self.assertIn(f"https://github.com/{update_readme.USERNAME}/SpecialRepo", row)
@@ -356,6 +399,10 @@ class TestMainIntegration(unittest.TestCase):
         "| Repo | Description | Tech |\n"
         "|---|---|---|\n"
         "<!-- WEB-PROJECTS-END -->\n"
+        "<!-- ML-AI-PROJECTS-START -->\n"
+        "| Repo | Description | Tech |\n"
+        "|---|---|---|\n"
+        "<!-- ML-AI-PROJECTS-END -->\n"
     )
 
     def test_new_unity_repo_appended(self):
@@ -463,6 +510,24 @@ class TestMainIntegration(unittest.TestCase):
             for call in open_mock().write.call_args_list
         )
         self.assertNotIn("HaskellMisc", written)
+
+    def test_new_ml_ai_repo_appended(self):
+        fake_repos = [
+            _repo("VisionModelLab", language="Python", description="Computer vision model training experiments"),
+        ]
+        with (
+            patch.object(update_readme, "get_all_repos", return_value=fake_repos),
+            patch.object(update_readme, "get_topics", return_value=set()),
+            patch("builtins.open", mock_open(read_data=self._MINIMAL_README)) as open_mock,
+        ):
+            update_readme.main()
+
+        written = "".join(
+            call.args[0]
+            for call in open_mock().write.call_args_list
+        )
+        self.assertIn("VisionModelLab", written)
+        self.assertIn("Computer vision model training experiments", written)
 
 
 if __name__ == "__main__":

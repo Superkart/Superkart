@@ -3,7 +3,7 @@
 This repository is a **self-updating GitHub profile page**.  When you visit
 [github.com/Superkart](https://github.com/Superkart), GitHub renders the
 `README.md` from this repository as the profile home page.  A small Python
-automation script and a GitHub Actions workflow keep three sections of that
+automation script and a GitHub Actions workflow keep four sections of that
 README in sync with your public repositories — completely hands-free.
 
 ---
@@ -47,13 +47,14 @@ Everything between a `*-START` / `*-END` pair is an *auto-managed section*.
 Content outside those markers (the featured projects write-ups, the tech-stack
 badges, the stats cards, etc.) is **never touched by the script**.
 
-Three auto-managed sections exist today:
+Four auto-managed sections exist today:
 
 | Marker pair | What goes in it |
 |---|---|
 | `UNITY-GAMES-START/END` | Unity / game-dev repositories |
 | `LEARNING-REPOS-START/END` | Learning and practice repositories |
 | `WEB-PROJECTS-START/END` | Web / front-end / back-end repositories |
+| `ML-AI-PROJECTS-START/END` | Machine learning and AI repositories |
 
 ### 2 · `scripts/update_readme.py` — the automation script
 
@@ -62,7 +63,7 @@ The script runs in five steps every time it is invoked:
 ```
 1. Fetch all public repos  →  GitHub REST API
 2. Read README.md          →  snapshot which repos are already listed
-3. Classify each repo      →  unity / learning / web / (uncategorised)
+3. Classify each repo      →  unity / learning / web / ml_ai / (uncategorised)
 4. Build new table rows    →  only for repos not yet in the section
 5. Write README.md         →  append new rows just before the END marker
 ```
@@ -83,11 +84,18 @@ Uses a two-tier priority system:
 Tier 1 — GitHub Topics (explicit, set by you on the repo):
   unity, game-development, game, unity3d  →  "unity"
   learning, practice, tutorial, education →  "learning"
+  ml, ai, machine-learning, deep-learning,
+  artificial-intelligence, data-science,
+  nlp, computer-vision                    →  "ml_ai"
   web, web-app, frontend, backend, website→  "web"
 
 Tier 2 — Heuristics (fallback when no matching topic exists):
   language C# or ShaderLab               →  "unity"
   name contains journey/learn/practice/… →  "learning"
+  language Jupyter Notebook               →  "ml_ai"
+  language Python + description has ML/AI terms
+  (model/training/inference/dataset/…)   →  "ml_ai"
+  name contains ml/ai/neural/nlp/vision/… →  "ml_ai"
   language TypeScript/JavaScript/HTML/CSS →  "web"
   language C++                           →  "learning"
 ```
@@ -109,6 +117,7 @@ Each category has its own column layout:
 ```
 unity    →  | [Name](url) | description | Unity · Language |
 learning →  | [Name](url) | description |
+ml_ai    →  | [Name](url) | description | Language |
 web      →  | [Name](url) | description | Language |
 ```
 
@@ -154,6 +163,7 @@ Fetching repositories for Superkart...
   42 public repos found
   New unity repos to add: 0
   New learning repos to add: 0
+  New ml_ai repos to add: 0
   New web repos to add: 0
 README.md updated.
 ```
