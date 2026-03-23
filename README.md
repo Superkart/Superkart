@@ -99,12 +99,30 @@ An open-source Python library that adds **data provenance and lineage tracking**
 
 A RESTful store back-end built with Spring Boot, demonstrating clean layered architecture (controllers, services, repositories), entity modeling, and Spring Data JPA patterns for an e-commerce domain.
 
+**What it does:**
+- **Product catalogue management** — exposes CRUD endpoints for products, categories, and inventory levels; supports filtering, sorting, and pagination out of the box
+- **Order & cart processing** — models the full purchase lifecycle from cart creation through order placement, with transactional guarantees via Spring Data JPA
+- **Customer accounts** — handles user registration, authentication, and address book management with secure password storage
+- **Service-layer business logic** — enforces stock-quantity checks, order-total calculation, and discount-code application cleanly separated from the persistence layer
+- **Spring Data JPA repositories** — leverages derived query methods and `@Query` annotations for efficient database access without boilerplate SQL
+
+**Architecture:** Classic three-layer Spring Boot application — `@RestController` → `@Service` → `@Repository` — wired together with dependency injection; entities mapped with JPA annotations to a relational database schema.
+
 ---
 
 ### 🤖 [AirSim API C++](https://github.com/Superkart/AirSimApiCpp)
 > **Systems / Robotics** &nbsp;·&nbsp; C++ · AirSim · Unreal Engine
 
 An external C++ project that interfaces with Microsoft's AirSim simulation platform via its native C++ API, enabling programmatic drone and vehicle control for autonomous navigation experiments. Showcases low-level systems programming and integration with a large simulation framework.
+
+**What it does:**
+- **Programmatic vehicle control** — sends velocity, position, and rotation commands to simulated drones and ground vehicles through AirSim's RPC-based C++ client
+- **Sensor data retrieval** — captures real-time telemetry including GPS coordinates, IMU readings, barometer data, and lidar point clouds directly from the simulation environment
+- **Autonomous flight scripting** — implements pre-planned waypoint navigation and mission sequences, letting the drone execute multi-step routes without manual input
+- **Camera & image pipeline** — requests high-resolution images and depth maps from onboard simulated cameras for computer-vision algorithm testing
+- **Collision & environment awareness** — monitors collision events and environment state to trigger conditional flight maneuvers or emergency responses
+
+**Architecture:** Standalone C++ application linked against AirSim's client library; communicates with the Unreal Engine simulation host over msgpack-RPC, with mission logic cleanly separated from the low-level API wrapper calls.
 
 ---
 
@@ -113,12 +131,32 @@ An external C++ project that interfaces with Microsoft's AirSim simulation platf
 
 A drone flight simulator implementing realistic physics and control systems for autonomous and manual drone operation. Demonstrates applied knowledge of flight dynamics, control loops, and simulation architecture in C++.
 
+**What it does:**
+- **Realistic flight physics** — models rotor thrust, drag, gravity, and inertia to produce believable 6-DOF (six degrees of freedom) flight behaviour for multi-rotor drones
+- **PID control loops** — implements proportional-integral-derivative controllers for altitude hold, attitude stabilisation, and position tracking, mirroring real autopilot firmware
+- **Manual & autonomous modes** — accepts joystick-style control inputs for manual piloting and supports scripted waypoint missions for fully autonomous operation
+- **Sensor emulation** — simulates noisy accelerometer, gyroscope, and barometer readings to test sensor-fusion and filtering algorithms under realistic conditions
+- **Collision detection** — tracks the drone's bounding volume against terrain and obstacles, triggering crash events and enabling safe-landing logic testing
+- **Telemetry logging** — records flight state (position, velocity, attitude, motor outputs) at each simulation tick for post-flight analysis and debugging
+
+**Architecture:** C++ simulation loop with a fixed-step physics integrator, a modular controller layer (attitude → velocity → position), and an I/O abstraction that separates simulated sensor feeds from the control algorithms.
+
 ---
 
 ### 🐾 [My Puggle Runner](https://github.com/Superkart/PuglleRunner-)
 > **Unity Game** &nbsp;·&nbsp; Unity · ShaderLab · C#
 
 An endless runner game starring a puggle (beagle–pug mix) protagonist, built in Unity with custom shader effects for a visually distinctive look. Showcases Unity rendering-pipeline customization, procedural obstacle generation, and polished game-loop design.
+
+**What it does:**
+- **Endless procedural level generation** — spawns and recycles obstacle patterns ahead of the player at runtime, keeping the track fresh and memory footprint constant regardless of playtime
+- **Custom ShaderLab visuals** — hand-written vertex and fragment shaders give the game its distinctive aesthetic, including stylised fur shading on the puggle character and dynamic background effects
+- **Responsive character controller** — tight, frame-rate-independent movement and jump mechanics with coyote-time and input buffering for a satisfying player feel
+- **Escalating difficulty curve** — gradually increases speed and obstacle density over time, maintaining a fair but ever-challenging experience
+- **Score & leaderboard system** — tracks the current run distance and personal best, displayed on a polished HUD with smooth UI animations
+- **Audio & juice** — synchronized sound effects and screen-shake feedback on collisions and power-up pickups amplify the game feel
+
+**Architecture:** Unity MonoBehaviour-driven architecture with an object-pooling system for obstacles and collectibles, a central `GameManager` state machine (idle → playing → game-over), and separated rendering concerns handled through custom shader passes.
 
 ---
 
@@ -127,12 +165,32 @@ An endless runner game starring a puggle (beagle–pug mix) protagonist, built i
 
 A machine-learning–powered assistant for Reddit moderation tasks. Uses natural language processing to analyse post and comment content, helping moderators identify rule-breaking content efficiently.
 
+**What it does:**
+- **Automated rule-violation detection** — trains a text classification model on labelled Reddit posts and comments to flag content that likely breaks community rules, dramatically reducing manual review workload
+- **Toxic & spam content filtering** — applies NLP techniques (TF-IDF, word embeddings) to distinguish toxic language, spam patterns, and off-topic submissions from legitimate posts
+- **Sentiment & intent analysis** — scores posts for hostility, harassment indicators, and low-quality signals to surface the most problematic items first
+- **Subreddit-specific fine-tuning** — the model can be retrained on a subreddit's own moderation history, adapting to niche community standards without manual rule writing
+- **Exploratory analysis notebooks** — Jupyter notebooks walk through data collection via the Reddit API (PRAW), feature engineering, model evaluation, and result visualisation for transparent, reproducible experiments
+- **Moderator-friendly output** — produces ranked lists of suspicious content with confidence scores and highlighted trigger phrases, making it easy for humans to audit and act on model predictions
+
+**Architecture:** Python data-science stack (pandas, scikit-learn, matplotlib) with PRAW for Reddit API access; Jupyter notebooks for exploration and training; serialised model artifacts for batch inference on new content.
+
 ---
 
 ### 🏝️ [The Lost Isle](https://github.com/Superkart/The-Lost-Isle)
 > **Unity Game** &nbsp;·&nbsp; Unity · C#
 
 An exploration and adventure game built in Unity, featuring hand-crafted level design, narrative-driven gameplay, and polished mechanics that guide the player through a mysterious island environment.
+
+**What it does:**
+- **Narrative-driven exploration** — players uncover the island's backstory through environmental storytelling, collectible journal entries, and scripted NPC encounters woven into the level design
+- **Hand-crafted level design** — each area of the island is individually designed with distinct biomes, puzzle layouts, and pacing beats to create a varied and memorable journey
+- **Puzzle & interaction systems** — environmental puzzles (pressure plates, rotating mechanisms, hidden switches) gate progression and reward observant players without breaking immersion
+- **Character controller & traversal** — responsive movement with climbing, swimming, and interaction prompts that feel natural across diverse terrain types
+- **Dynamic lighting & atmosphere** — real-time Unity lighting, fog, and ambient audio adapt to the time-of-day cycle and story beats, reinforcing the mysterious island mood
+- **Save & checkpoint system** — persistent save data records story progress, collected items, and explored areas, allowing players to resume exactly where they left off
+
+**Architecture:** Unity scene-management system with a persistent `GameManager` that tracks global state; modular puzzle and trigger components communicate via C# events to keep level logic decoupled from core gameplay systems.
 
 ---
 
