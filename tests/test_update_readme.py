@@ -548,5 +548,87 @@ class TestMainIntegration(unittest.TestCase):
         self.assertIn("Computer vision model training experiments", written)
 
 
+# ---------------------------------------------------------------------------
+# FEATURED_REPOS membership
+# ---------------------------------------------------------------------------
+
+class TestFeaturedReposMembership(unittest.TestCase):
+    """Verify the exact composition of FEATURED_REPOS after the project shuffle."""
+
+    # Projects that must be in featured
+    def test_puggle_runner_in_featured_repos(self):
+        self.assertIn("PuglleRunner-", update_readme.FEATURED_REPOS)
+
+    def test_reddit_moderator_tool_in_featured_repos(self):
+        self.assertIn("Reddit_Moderator_Tool", update_readme.FEATURED_REPOS)
+
+    def test_lost_isle_in_featured_repos(self):
+        self.assertIn("The-Lost-Isle", update_readme.FEATURED_REPOS)
+
+    # Projects that must no longer be featured
+    def test_student_survey_analysis_not_in_featured_repos(self):
+        self.assertNotIn("Student_Survey_Analysis", update_readme.FEATURED_REPOS)
+
+    def test_ar_model_viewer_not_in_featured_repos(self):
+        self.assertNotIn("ARModelViewer", update_readme.FEATURED_REPOS)
+
+    # Projects that must remain featured
+    def test_drone_simulator_in_featured_repos(self):
+        self.assertIn("Drone_Simulator", update_readme.FEATURED_REPOS)
+
+    def test_steam_accountabilibuddy_in_featured_repos(self):
+        self.assertIn("Steam_Accountabilibuddy", update_readme.FEATURED_REPOS)
+
+
+# ---------------------------------------------------------------------------
+# validate_featured_repos()
+# ---------------------------------------------------------------------------
+
+class TestValidateFeaturedRepos(unittest.TestCase):
+    """Verify the integrity-check between FEATURED_REPOS and README.md."""
+
+    _FEATURED_SECTION_END = update_readme.FEATURED_SECTION_END_MARKER
+
+    def _make_readme(self, linked_repos: list[str]) -> str:
+        """Build a minimal README where the featured section links the given repos."""
+        links = "\n".join(
+            f"[{name}](https://github.com/Superkart/{name})"
+            for name in linked_repos
+        )
+        return f"{links}\n{self._FEATURED_SECTION_END}\n<!-- UNITY-GAMES-END -->\n"
+
+    def test_no_warnings_when_in_sync(self):
+        expected = sorted(update_readme.FEATURED_REPOS - {update_readme.USERNAME})
+        readme = self._make_readme(expected)
+        warnings = update_readme.validate_featured_repos(readme)
+        self.assertEqual(warnings, [])
+
+    def test_warns_when_repo_in_set_but_missing_from_readme(self):
+        # Provide links for all featured repos except one
+        expected = sorted(update_readme.FEATURED_REPOS - {update_readme.USERNAME})
+        missing = expected[0]
+        readme = self._make_readme(expected[1:])
+        warnings = update_readme.validate_featured_repos(readme)
+        self.assertTrue(
+            any(missing in w and "no hand-written entry" in w for w in warnings),
+            warnings,
+        )
+
+    def test_warns_when_readme_links_repo_not_in_set(self):
+        expected = sorted(update_readme.FEATURED_REPOS - {update_readme.USERNAME})
+        extra = "SomeUnlistedRepo"
+        readme = self._make_readme(expected + [extra])
+        warnings = update_readme.validate_featured_repos(readme)
+        self.assertTrue(
+            any(extra in w and "not in FEATURED_REPOS" in w for w in warnings),
+            warnings,
+        )
+
+    def test_warns_when_marker_missing(self):
+        warnings = update_readme.validate_featured_repos("# No marker here at all\n")
+        self.assertEqual(len(warnings), 1)
+        self.assertIn("not found in README", warnings[0])
+
+
 if __name__ == "__main__":
     unittest.main()

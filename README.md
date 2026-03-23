@@ -94,13 +94,6 @@ An open-source Python library that adds **data provenance and lineage tracking**
 
 ---
 
-### 📊 [Student Survey Analysis](https://github.com/Superkart/Student_Survey_Analysis)
-> **Data Analysis Project** &nbsp;·&nbsp; Python · pandas · Google Colab · Manipal University
-
-A simulation of a real-world data analysis internship at **Manipal University**, covering the complete analytics lifecycle: survey design in Google Forms → data collection → data cleaning → exploratory visualization → stakeholder report. Demonstrates hands-on pandas techniques and the ability to turn raw survey responses into clear, actionable conclusions.
-
----
-
 ### 🛒 [Store — Spring Boot](https://github.com/Superkart/Store_Spring_Boot)
 > **Backend Application** &nbsp;·&nbsp; Java · Spring Boot
 
@@ -122,10 +115,24 @@ A drone flight simulator implementing realistic physics and control systems for 
 
 ---
 
-### 🕶️ [AR Model Viewer](https://github.com/Superkart/ARModelViewer)
-> **Augmented Reality** &nbsp;·&nbsp; Unity · C# · AR Foundation
+### 🐾 [My Puggle Runner](https://github.com/Superkart/PuglleRunner-)
+> **Unity Game** &nbsp;·&nbsp; Unity · ShaderLab · C#
 
-A mobile AR app that places a detailed 3D model of an AC motor mid-air using the phone camera, letting users explore its internal components in augmented reality. First-hand experience shipping a production AR experience on Unity's AR Foundation stack.
+An endless runner game starring a puggle (beagle–pug mix) protagonist, built in Unity with custom shader effects for a visually distinctive look. Showcases Unity rendering-pipeline customization, procedural obstacle generation, and polished game-loop design.
+
+---
+
+### 🛠️ [Reddit Moderator Tool](https://github.com/Superkart/Reddit_Moderator_Tool)
+> **ML / Data Science Tool** &nbsp;·&nbsp; Python · Jupyter Notebook
+
+A machine-learning–powered assistant for Reddit moderation tasks. Uses natural language processing to analyse post and comment content, helping moderators identify rule-breaking content efficiently.
+
+---
+
+### 🏝️ [The Lost Isle](https://github.com/Superkart/The-Lost-Isle)
+> **Unity Game** &nbsp;·&nbsp; Unity · C#
+
+An exploration and adventure game built in Unity, featuring hand-crafted level design, narrative-driven gameplay, and polished mechanics that guide the player through a mysterious island environment.
 
 ---
 
@@ -148,6 +155,7 @@ Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedur
 | [Mario Game](https://github.com/Superkart/Mario-Game) | 2D side-scroller inspired by classic Mario mechanics | Unity · C# |
 | [Quiz Defender](https://github.com/Superkart/QuizDefender) | Educational quiz-based tower defense hybrid | Unity · C# |
 | [Shooter Concept](https://github.com/Superkart/ShooterConcept) | Third-person shooter movement and combat prototype | Unity |
+| [AR Model Viewer](https://github.com/Superkart/ARModelViewer) | Mobile AR app placing a 3D AC motor model in augmented reality | Unity · C# |
 <!-- UNITY-GAMES-END -->
 
 ---
@@ -191,6 +199,7 @@ Structured, version-controlled practice documenting continuous growth:
 | [ML-Foundations-Python-Numpy](https://github.com/Superkart/ML-Foundations-Python-Numpy) | — | Jupyter Notebook |
 | [ML-From-Scratch-Neural-Networks](https://github.com/Superkart/ML-From-Scratch-Neural-Networks) | — | Jupyter Notebook |
 | [Reddit_Moderator_Tool](https://github.com/Superkart/Reddit_Moderator_Tool) | — | Jupyter Notebook |
+| [Student_Survey_Analysis](https://github.com/Superkart/Student_Survey_Analysis) | Data analysis project covering survey design, cleaning, and visualization | Python |
 <!-- ML-AI-PROJECTS-END -->
 
 ---
