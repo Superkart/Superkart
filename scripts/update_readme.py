@@ -28,7 +28,9 @@ Category rules (topics take priority over heuristics):
              OR language TypeScript / JavaScript / HTML / CSS
 
 Repos listed under "Featured Projects" are excluded from all auto-managed
-tables so their hand-written descriptions are never touched.
+tables so their hand-written descriptions are never touched.  Use
+validate_featured_repos() to check for drift between FEATURED_REPOS and the
+README featured section.
 """
 
 import os
@@ -48,17 +50,25 @@ if GITHUB_TOKEN:
 
 # Repos whose entries are hand-written in the "Featured Projects" section.
 # They are intentionally excluded from the auto-managed tables below.
+# A project belongs here when it has a substantial, hand-authored description
+# in the "Featured Projects" section of README.md.  Use validate_featured_repos()
+# to detect any drift between this set and the README.
 FEATURED_REPOS: frozenset = frozenset({
     "Steam_Accountabilibuddy",
     "Immersive_Cosmology_Explorer",
     "Pandas_Provenance",
-    "Student_Survey_Analysis",
     "Store_Spring_Boot",
     "AirSimApiCpp",
-    "ARModelViewer",
     "Drone_Simulator",
+    "PuglleRunner-",
+    "Reddit_Moderator_Tool",
+    "The-Lost-Isle",
     USERNAME,  # the profile repo itself
 })
+
+# Marker that separates the hand-written Featured Projects section from the
+# auto-managed tables.  Everything before this line is considered "featured".
+FEATURED_SECTION_END_MARKER = "<!-- UNITY-GAMES-START -->"
 
 # Section markers — these must match the markers inside README.md exactly.
 MARKERS: dict[str, tuple[str, str]] = {
@@ -222,6 +232,42 @@ def build_new_row(repo: dict, category: str) -> str:
     return f"| [{name}]({url}) | {desc} | {tech} |"
 
 
+# ── Featured-projects integrity check ────────────────────────────────────────
+def validate_featured_repos(content: str) -> list[str]:
+    """Return a list of warning strings for any FEATURED_REPOS/README mismatch.
+
+    A project is considered worthy of the Featured Projects section when it has
+    a hand-written entry (i.e. its GitHub URL appears in the text before the
+    first auto-managed table marker).  This function reports:
+      • repos in FEATURED_REPOS that have no hand-written entry in README.md
+      • repos with a hand-written featured entry that are not in FEATURED_REPOS
+        (they would be duplicated by the auto-managed tables)
+
+    The check intentionally excludes the profile repo (USERNAME) because that
+    repo represents the README itself and needs no featured entry.
+    """
+    featured_text_end = content.find(FEATURED_SECTION_END_MARKER)
+    if featured_text_end == -1:
+        return [f"WARNING: '{FEATURED_SECTION_END_MARKER}' not found in README — skipping featured validation"]
+
+    featured_section = content[:featured_text_end]
+    link_re = re.compile(rf"https://github\.com/{re.escape(USERNAME)}/([^\s)]+)")
+    linked_repos: set[str] = {m.group(1) for m in link_re.finditer(featured_section)}
+
+    expected = FEATURED_REPOS - {USERNAME}
+    warnings: list[str] = []
+    for repo in sorted(expected - linked_repos):
+        warnings.append(
+            f"WARNING: '{repo}' is in FEATURED_REPOS but has no hand-written entry in the Featured Projects section"
+        )
+    for repo in sorted(linked_repos - expected):
+        warnings.append(
+            f"WARNING: '{repo}' has a featured entry in README.md but is not in FEATURED_REPOS — "
+            "it may be duplicated by the auto-managed tables"
+        )
+    return warnings
+
+
 # ── README update (append-only) ───────────────────────────────────────────────
 def insert_rows_before_end(content: str, end_marker: str, new_rows: list[str]) -> str:
     """Insert *new_rows* immediately before *end_marker*, preserving everything else."""
@@ -237,6 +283,9 @@ def main() -> None:
 
     with open(README_PATH, encoding="utf-8") as fh:
         content = fh.read()
+
+    for warning in validate_featured_repos(content):
+        print(warning, file=sys.stderr)
 
     # Snapshot which repos are already represented in each section
     already_linked: dict[str, set[str]] = {
