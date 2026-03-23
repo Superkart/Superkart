@@ -466,6 +466,24 @@ class TestMainIntegration(unittest.TestCase):
         # The featured repo must NOT appear in the auto-managed tables
         self.assertNotIn(f"github.com/Superkart/{featured_name}", written)
 
+    def test_drone_simulator_in_featured_repos(self):
+        self.assertIn("Drone_Simulator", update_readme.FEATURED_REPOS)
+
+    def test_drone_simulator_excluded_from_learning_table(self):
+        fake_repos = [_repo("Drone_Simulator", language="C++", description="Drone simulator")]
+        with (
+            patch.object(update_readme, "get_all_repos", return_value=fake_repos),
+            patch.object(update_readme, "get_topics", return_value=set()),
+            patch("builtins.open", mock_open(read_data=self._MINIMAL_README)) as open_mock,
+        ):
+            update_readme.main()
+
+        written = "".join(
+            call.args[0]
+            for call in open_mock().write.call_args_list
+        )
+        self.assertNotIn("github.com/Superkart/Drone_Simulator", written)
+
     def test_forked_repo_excluded(self):
         fake_repos = [_repo("ForkOfSomething", language="C#", fork=True)]
         with (

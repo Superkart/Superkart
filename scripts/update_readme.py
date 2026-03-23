@@ -56,6 +56,7 @@ FEATURED_REPOS: frozenset = frozenset({
     "Store_Spring_Boot",
     "AirSimApiCpp",
     "ARModelViewer",
+    "Drone_Simulator",
     USERNAME,  # the profile repo itself
 })
 

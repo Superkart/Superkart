@@ -115,6 +115,13 @@ An external C++ project that interfaces with Microsoft's AirSim simulation platf
 
 ---
 
+### 🚁 [Drone Simulator](https://github.com/Superkart/Drone_Simulator)
+> **Simulation / Systems** &nbsp;·&nbsp; C++
+
+A drone flight simulator implementing realistic physics and control systems for autonomous and manual drone operation. Demonstrates applied knowledge of flight dynamics, control loops, and simulation architecture in C++.
+
+---
+
 ### 🕶️ [AR Model Viewer](https://github.com/Superkart/ARModelViewer)
 > **Augmented Reality** &nbsp;·&nbsp; Unity · C# · AR Foundation
 
@@ -155,7 +162,6 @@ Structured, version-controlled practice documenting continuous growth:
 | [Python Journey](https://github.com/Superkart/Python_Journey) | Python fundamentals, YouTube tutorials, and LeetCode problems |
 | [C++ Journey](https://github.com/Superkart/Cpp_Journey) | C++ from basics to advanced — OOP, memory management, STL |
 | [Text-Based Game (C++)](https://github.com/Superkart/TextBasedGame_F) | Console RPG / adventure game written entirely in C++ |
-| [Drone_Simulator](https://github.com/Superkart/Drone_Simulator) | — |
 <!-- LEARNING-REPOS-END -->
 
 ---
