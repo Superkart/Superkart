@@ -256,7 +256,7 @@ Structured, version-controlled practice documenting continuous growth:
 | [ML-Foundations-Python-Numpy](https://github.com/Superkart/ML-Foundations-Python-Numpy) | — | Jupyter Notebook |
 | [ML-From-Scratch-Neural-Networks](https://github.com/Superkart/ML-From-Scratch-Neural-Networks) | — | Jupyter Notebook |
 | [Student_Survey_Analysis](https://github.com/Superkart/Student_Survey_Analysis) | Data analysis project covering survey design, cleaning, and visualization | Python |
-| [SQL_Hackathon](https://github.com/Superkart/SQL_Hackathon) | SQL-based hackathon and data analysis project for a database systems course | — |
+| [SQL_Hackathon](https://github.com/Superkart/SQL_Hackathon) | SQL-based hackathon and data analysis project for a database systems course | SQL |
 <!-- ML-AI-PROJECTS-END -->
 
 ---
