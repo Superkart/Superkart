@@ -241,7 +241,6 @@ Structured, version-controlled practice documenting continuous growth:
 | [PortfolioApp](https://github.com/Superkart/PortfolioApp) | Personal portfolio website | JavaScript |
 | [FirstWebAppDeployed](https://github.com/Superkart/FirstWebAppDeployed) | First deployed web application | Astro |
 | [BasicCounterWebPage](https://github.com/Superkart/BasicCounterWebPage) | Interactive counter page | TypeScript |
-| [DataScience1](https://github.com/Superkart/DataScience1) | This is a repository that contains the homework 1 of my Data Science class | HTML |
 | [hw5](https://github.com/Superkart/hw5) | — | TypeScript |
 <!-- WEB-PROJECTS-END -->
 
@@ -256,8 +255,8 @@ Structured, version-controlled practice documenting continuous growth:
 | [DataScience1](https://github.com/Superkart/DataScience1) | This is a repository that contains the homework 1 of my Data Science class | HTML |
 | [ML-Foundations-Python-Numpy](https://github.com/Superkart/ML-Foundations-Python-Numpy) | — | Jupyter Notebook |
 | [ML-From-Scratch-Neural-Networks](https://github.com/Superkart/ML-From-Scratch-Neural-Networks) | — | Jupyter Notebook |
-| [Reddit_Moderator_Tool](https://github.com/Superkart/Reddit_Moderator_Tool) | — | Jupyter Notebook |
 | [Student_Survey_Analysis](https://github.com/Superkart/Student_Survey_Analysis) | Data analysis project covering survey design, cleaning, and visualization | Python |
+| [SQL_Hackathon](https://github.com/Superkart/SQL_Hackathon) | SQL-based hackathon and data analysis project for a database systems course | — |
 <!-- ML-AI-PROJECTS-END -->
 
 ---
