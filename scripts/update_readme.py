@@ -15,15 +15,17 @@ Sections managed (identified by HTML comment markers):
 Category rules (topics take priority over heuristics):
   unity    — topics: unity, game-development, game, unity3d
              OR language C# / ShaderLab
+             OR description contains "unity"
   learning — topics: learning, practice, tutorial, education
              OR name contains: journey, learn, practice, exercise, tutorial
              OR language C++
-    ml_ai    — topics: ml, ai, machine-learning, deep-learning,
-                         artificial-intelligence, data-science, nlp, computer-vision
-                         OR language Jupyter Notebook
-                 OR language Python + description contains ML/AI terms
-                         OR name contains: ml, ai, machine-learning, deep-learning,
-                         neural, nlp, vision, datascience
+  ml_ai    — topics: ml, ai, machine-learning, deep-learning,
+                       artificial-intelligence, data-science, nlp, computer-vision
+                       OR language Jupyter Notebook
+             OR description contains ML/AI/data-science terms
+                       (any non-unity language)
+                       OR name contains: ml, ai, machine-learning, deep-learning,
+                       neural, nlp, vision, datascience, sql, database
   web      — topics: web, web-app, frontend, backend, website
              OR language TypeScript / JavaScript / HTML / CSS
 
@@ -146,14 +148,18 @@ def classify(repo: dict, topics: set[str]) -> str | None:
     # Language / name heuristics
     if language in ("C#", "ShaderLab"):
         return "unity"
+    if "unity" in description_lower:
+        return "unity"
     if language == "Jupyter Notebook":
         return "ml_ai"
-    if language == "Python" and any(
+    if language not in ("C#", "ShaderLab") and any(
         k in description_lower
         for k in (
             "machine learning",
             "deep learning",
             "artificial intelligence",
+            "data science",
+            "data analysis",
             "ai",
             "ml",
             "model",
@@ -181,6 +187,8 @@ def classify(repo: dict, topics: set[str]) -> str | None:
             "-ml",
             "_ai",
             "-ai",
+            "sql",
+            "database",
         )
     ) and language != "Python":
         return "ml_ai"

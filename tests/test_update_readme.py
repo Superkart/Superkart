@@ -159,6 +159,14 @@ class TestClassify(unittest.TestCase):
         repo = _repo("StaticSite", language="HTML")
         self.assertEqual(update_readme.classify(repo, set()), "web")
 
+    def test_html_with_data_science_description_maps_to_ml_ai(self):
+        repo = _repo("DataScience1", language="HTML", description="homework 1 of my Data Science class")
+        self.assertEqual(update_readme.classify(repo, set()), "ml_ai")
+
+    def test_html_with_data_analysis_description_maps_to_ml_ai(self):
+        repo = _repo("AnalysisHW", language="HTML", description="Data analysis and visualization project")
+        self.assertEqual(update_readme.classify(repo, set()), "ml_ai")
+
     def test_css_maps_to_web(self):
         repo = _repo("Styles", language="CSS")
         self.assertEqual(update_readme.classify(repo, set()), "web")
@@ -182,6 +190,24 @@ class TestClassify(unittest.TestCase):
     def test_name_contains_nlp_maps_to_ml_ai(self):
         repo = _repo("tweet-nlp", language=None)
         self.assertEqual(update_readme.classify(repo, set()), "ml_ai")
+
+    def test_name_contains_sql_maps_to_ml_ai(self):
+        repo = _repo("SQL_Hackathon", language=None)
+        self.assertEqual(update_readme.classify(repo, set()), "ml_ai")
+
+    def test_name_contains_database_maps_to_ml_ai(self):
+        repo = _repo("database-explorer", language=None)
+        self.assertEqual(update_readme.classify(repo, set()), "ml_ai")
+
+    def test_unity_in_description_maps_to_unity(self):
+        repo = _repo("BallExperiments", language="Mathematica",
+                     description="A Unity 3d project to learn basic game physics")
+        self.assertEqual(update_readme.classify(repo, set()), "unity")
+
+    def test_unity_description_beats_other_language_heuristics(self):
+        repo = _repo("ShooterConcept", language=None,
+                     description="This is a repository that contains a third person shooter concept in Unity")
+        self.assertEqual(update_readme.classify(repo, set()), "unity")
 
     # ── Uncategorised ───────────────────────────────────────────────────────
 
