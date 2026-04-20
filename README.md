@@ -1,4 +1,4 @@
-<h1 align="center">Hi, I'm Superkart 👋</h1>
+<h1 align="center">Hi, I'm Karthik Ragi 😃</h1>
 
 <p align="center">
   <b>Full-Stack Developer · Game Developer · Data Engineer · VR/AR Builder</b><br/>
