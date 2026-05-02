@@ -242,6 +242,7 @@ Structured, version-controlled practice documenting continuous growth:
 | [FirstWebAppDeployed](https://github.com/Superkart/FirstWebAppDeployed) | First deployed web application | Astro |
 | [BasicCounterWebPage](https://github.com/Superkart/BasicCounterWebPage) | Interactive counter page | TypeScript |
 | [hw5](https://github.com/Superkart/hw5) | — | TypeScript |
+| [uic-hackathon-my-agent](https://github.com/Superkart/uic-hackathon-my-agent) | — | TypeScript |
 <!-- WEB-PROJECTS-END -->
 
 ---
