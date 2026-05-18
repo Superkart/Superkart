@@ -4,6 +4,12 @@ on:
   schedule:
     # Runs every day at 00:00 UTC — picks up any repos created since the last run
     - cron: '0 0 * * *'
+  # Re-run whenever the README or script changes (e.g. new section markers added)
+  push:
+    branches: [main]
+    paths:
+      - 'README.md'
+      - 'scripts/update_readme.py'
   # Allow a manual trigger from the Actions tab
   workflow_dispatch:
 
@@ -23,7 +29,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests openai
 
       - name: Update README sections
         env:

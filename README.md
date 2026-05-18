@@ -1,8 +1,9 @@
 <h1 align="center">Hi, I'm Karthik Ragi 😃</h1>
 
 <p align="center">
-  <b>Full-Stack Developer · Game Developer · Data Engineer · VR/AR Builder</b><br/>
-  Building ambitious projects across web, systems, data, and immersive tech.
+  <b>Software Engineer · AI Systems · Backend · Computer Vision</b><br/>
+  3 years building real-time systems and multi-agent pipelines.<br/>
+  MS Computer Science at UIC &nbsp;·&nbsp; Open to full-time roles
 </p>
 
 <p align="center">
@@ -15,7 +16,13 @@
 
 ## 🚀 About Me
 
-I'm a developer with a broad technical portfolio spanning **full-stack web applications**, **game development**, **data science**, and **VR/AR systems**. I enjoy solving real problems end-to-end from backend architecture and APIs to front-end interfaces, from simulation engines to data pipelines. I'm equally comfortable writing C++ for performance-critical systems, Java services in Spring Boot, Python for data analysis, and C# inside a Unity game engine.
+I build **real-time AI systems and production-grade backend infrastructure**. My work spans multi-agent LLM pipelines, CUDA-accelerated computer vision, and high-throughput data systems deployed at scale.
+
+- **AI & Agents** — LangGraph multi-agent pipelines (Planner → Extractor → Critic → SME) benchmarked on real RE datasets; production incident response agent turning Prometheus alerts into auto-drafted GitHub PRs with full Loki/Grafana observability
+- **Computer Vision** — CUDA-accelerated OpenCV detection at **10 Indian Air Force bases**, serving **3,000+ daily users** on a $1.8M project; classical pipeline at **96% hit detection accuracy** on Raspberry Pi
+- **Backend & Systems** — multi-threaded .NET ingestion pipelines: 500ms → <50ms; Spring Boot + GCP batch API: 50s → <2s (10–25×)
+
+📍 Chicago, IL &nbsp;·&nbsp; Open to remote &nbsp;·&nbsp; 📧 [kragi@uic.edu](mailto:kragi@uic.edu)
 
 ---
 
@@ -23,178 +30,115 @@ I'm a developer with a broad technical portfolio spanning **full-stack web appli
 
 **Languages**
 
-![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-239120?style=flat&logo=c-sharp&logoColor=white)
-![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?style=flat&logo=c-sharp&logoColor=white)
+![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 
-**Frameworks & Platforms**
+**AI / ML**
 
+![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C?style=flat&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat&logo=langchain&logoColor=white)
+![Claude API](https://img.shields.io/badge/Claude_API-D97757?style=flat&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat&logo=opencv&logoColor=white)
+![CUDA](https://img.shields.io/badge/CUDA-76B900?style=flat&logo=nvidia&logoColor=white)
+![sentence-transformers](https://img.shields.io/badge/sentence--transformers-FF6B35?style=flat&logoColor=white)
+
+**Backend & Data**
+
+![.NET](https://img.shields.io/badge/.NET-512BD4?style=flat&logo=dotnet&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat&logo=spring-boot&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
-![Astro](https://img.shields.io/badge/Astro-BC52EE?style=flat&logo=astro&logoColor=white)
-![Unity](https://img.shields.io/badge/Unity-000000?style=flat&logo=unity&logoColor=white)
-![pandas](https://img.shields.io/badge/pandas-150458?style=flat&logo=pandas&logoColor=white)
-
-**Tools & Infrastructure**
-
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white)
-![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat&logo=cloudflare&logoColor=white)
-![Google Colab](https://img.shields.io/badge/Google_Colab-F9AB00?style=flat&logo=googlecolab&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-07405E?style=flat&logo=sqlite&logoColor=white)
+![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?style=flat&logo=rabbitmq&logoColor=white)
+
+**Infrastructure**
+
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![GCP](https://img.shields.io/badge/GCP-4285F4?style=flat&logo=googlecloud&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white)
+![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat&logo=prometheus&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat&logo=grafana&logoColor=white)
+
+**Simulation**
+
+![Unity](https://img.shields.io/badge/Unity-000000?style=flat&logo=unity&logoColor=white)
+![Unreal Engine](https://img.shields.io/badge/Unreal_Engine_5-0E1128?style=flat&logo=unrealengine&logoColor=white)
+![AirSim](https://img.shields.io/badge/AirSim-0078D4?style=flat&logo=microsoft&logoColor=white)
 
 ---
 
 ## ⭐ Featured Projects
 
+### 🚨 [Incident Response Agent](https://github.com/Superkart/Incident_Response_Agent)
+> **AI Agent System** &nbsp;·&nbsp; Python · Claude API · Prometheus · Loki · Grafana · Docker
+
+Production-grade incident response automation: a Prometheus alert fires and triggers a 3-agent triage pipeline that investigates root cause, correlates Loki logs, and auto-drafts a GitHub PR with a proposed fix.
+
+**What it does:**
+- **Alert ingestion** — Prometheus firing alert → agent pipeline activates automatically
+- **3-agent triage** — Investigator queries Loki/Grafana for context → Analyst identifies root cause → Drafter writes the GitHub PR
+- **Full observability** — every agent step traced in Grafana; alert-to-PR latency tracked end-to-end
+
+---
+
+### 📐 [RE Elicitation Agents](https://github.com/Superkart/RequirementsEngineering_Agents)
+> **AI Research** &nbsp;·&nbsp; LangGraph · Claude API · sentence-transformers
+
+Rigorous benchmark comparing single-agent vs multi-agent LLM approaches for requirements elicitation, run against two real-world RE datasets.
+
+**What it does:**
+- **Multi-agent pipeline** — Planner → Extractor → Critic → SME review loop built in LangGraph
+- **Honest result** — single-agent outperformed multi-agent at 1/5 the token cost on both datasets
+- **Reproducible evaluation** — sentence-transformer similarity scoring against gold-standard requirements
+
+---
+
 ### 🎮 [Steam Accountabilibuddy](https://github.com/Superkart/Steam_Accountabilibuddy)
-> **Full-Stack Web App** &nbsp;·&nbsp; Java · Spring Boot · React · Astro · PostgreSQL · Cloudflare Workers
+> **Full-Stack Web App** &nbsp;·&nbsp; Java · Spring Boot · React · PostgreSQL · GCP
 
-A smart Steam library management platform that helps gamers fight backlog overload and never miss a deal. Users authenticate via Steam OpenID and the app automatically analyzes their full library of hundreds of games.
-
-**What it does:**
-- **Intelligent backlog analysis** — detects unplayed games in your library that are similar to your wishlist items using SteamSpy tag-based similarity scoring
-- **Automated price tracking** — scheduled Spring Boot jobs monitor wishlist prices daily and send email alerts when titles hit user-defined thresholds
-- **Library analytics** — visualizes playtime, spending patterns, and gaming habits across your entire Steam catalog
-- **Shared wishlists** — generate shareable links for your curated game lists
-
-**Architecture:** Spring Boot 3 backend with Spring Security (OpenID), Spring Data JPA, Spring Mail, and Spring Scheduling wired to a PostgreSQL database; React + Astro front-end deployed via Cloudflare Workers for edge performance.
-
----
-
-### 🔭 [Immersive Cosmology Explorer (ICE)](https://github.com/Superkart/Immersive_Cosmology_Explorer)
-> **VR / Desktop Visualization System** &nbsp;·&nbsp; Unity · C# · AR Foundation · Scientific Visualization
-
-A research-grade Unity application that lets scientists explore multi-billion-particle cosmological simulations in both VR and traditional desktop environments simultaneously.
+A Steam library manager that fights backlog overload and tracks deals. Authenticates via Steam OpenID and analyzes your full library automatically.
 
 **What it does:**
-- **Immersive 3D point-cloud rendering** — millions of particles (gas, stars, dark matter) rendered in real-time with perceptually uniform colormaps
-- **Interactive filtering** — define numeric ranges on physical properties to isolate regions of interest; changes reflect instantly in both VR and desktop views
-- **Desktop–VR synchronization** — asymmetric collaboration where a VR user and a desktop user work on the same dataset at the same time
-- **Scientific analysis tools** — vector field overlays for particle velocities, time-lapse playback across simulation time-steps, save/load session states, and annotation sharing
-- **Optimized for performance** — octree spatial indexing and Level-of-Detail system keep frame rates smooth even with massive datasets
+- **Backlog analysis** — detects unplayed games similar to your wishlist via SteamSpy tag-based scoring
+- **Price alerts** — scheduled Spring Boot jobs monitor wishlist prices daily; email when thresholds hit
+- **10–25× API speedup** — batch Steam API calls cut fetch time from 50s → <2s
+- **Library analytics** — playtime, spending, and gaming habit visualizations
 
-**Architecture:** Three-layer Unity design: data management (import, octree indexing, LOD), visualization & interaction (VR controllers, radial menus, colormaps), and multi-device collaboration (real-time state sync, session history).
-
----
-
-### 🧪 [Pandas Provenance Tracker](https://github.com/Superkart/Pandas_Provenance)
-> **Python Library** &nbsp;·&nbsp; Python · pandas · Data Lineage · PyPI
-
-An open-source Python library that adds **data provenance and lineage tracking** to standard pandas workflows — essential for reproducible data science, regulatory compliance, and pipeline debugging.
-
-**What it does:**
-- Tracks every transformation (`read_csv`, `filter`, `merge`, `drop_columns`) with operation-level metadata (table hash, schema, dimensions, timestamp)
-- Records **row-level why-provenance** — for any output row you can query exactly which source rows and transformations produced it
-- Persists provenance logs as JSON for sharing, auditing, and replay
-- Clean query API: `get_table_why_provenance`, `get_row_why_provenance`
-- **Published on PyPI** via a full release pipeline (setuptools / wheel / twine)
-
----
-
-### 🛒 [Store — Spring Boot](https://github.com/Superkart/Store_Spring_Boot)
-> **Backend Application** &nbsp;·&nbsp; Java · Spring Boot
-
-A RESTful store back-end built with Spring Boot, demonstrating clean layered architecture (controllers, services, repositories), entity modeling, and Spring Data JPA patterns for an e-commerce domain.
-
-**What it does:**
-- **Product catalogue management** — exposes CRUD endpoints for products, categories, and inventory levels; supports filtering, sorting, and pagination out of the box
-- **Order & cart processing** — models the full purchase lifecycle from cart creation through order placement, with transactional guarantees via Spring Data JPA
-- **Customer accounts** — handles user registration, authentication, and address book management with secure password storage
-- **Service-layer business logic** — enforces stock-quantity checks, order-total calculation, and discount-code application cleanly separated from the persistence layer
-- **Spring Data JPA repositories** — leverages derived query methods and `@Query` annotations for efficient database access without boilerplate SQL
-
-**Architecture:** Classic three-layer Spring Boot application — `@RestController` → `@Service` → `@Repository` — wired together with dependency injection; entities mapped with JPA annotations to a relational database schema.
-
----
-
-### 🤖 [AirSim API C++](https://github.com/Superkart/AirSimApiCpp)
-> **Systems / Robotics** &nbsp;·&nbsp; C++ · AirSim · Unreal Engine
-
-An external C++ project that interfaces with Microsoft's AirSim simulation platform via its native C++ API, enabling programmatic drone and vehicle control for autonomous navigation experiments. Showcases low-level systems programming and integration with a large simulation framework.
-
-**What it does:**
-- **Programmatic vehicle control** — sends velocity, position, and rotation commands to simulated drones and ground vehicles through AirSim's RPC-based C++ client
-- **Sensor data retrieval** — captures real-time telemetry including GPS coordinates, IMU readings, barometer data, and lidar point clouds directly from the simulation environment
-- **Autonomous flight scripting** — implements pre-planned waypoint navigation and mission sequences, letting the drone execute multi-step routes without manual input
-- **Camera & image pipeline** — requests high-resolution images and depth maps from onboard simulated cameras for computer-vision algorithm testing
-- **Collision & environment awareness** — monitors collision events and environment state to trigger conditional flight maneuvers or emergency responses
-
-**Architecture:** Standalone C++ application linked against AirSim's client library; communicates with the Unreal Engine simulation host over msgpack-RPC, with mission logic cleanly separated from the low-level API wrapper calls.
+**Architecture:** Spring Boot 3 (Spring Security OpenID, Data JPA, Mail, Scheduling) + PostgreSQL + GCP; React front-end.
 
 ---
 
 ### 🚁 [Drone Simulator](https://github.com/Superkart/Drone_Simulator)
-> **Simulation / Systems** &nbsp;·&nbsp; C++
+> **HITL Simulation Platform** &nbsp;·&nbsp; C++ · AirSim · Unreal Engine 5 · PX4
 
-A drone flight simulator implementing realistic physics and control systems for autonomous and manual drone operation. Demonstrates applied knowledge of flight dynamics, control loops, and simulation architecture in C++.
+Hardware-in-the-Loop drone simulation with high-fidelity physics across a 16 km² terrain at 30–120 Hz telemetry rates.
 
 **What it does:**
-- **Realistic flight physics** — models rotor thrust, drag, gravity, and inertia to produce believable 6-DOF (six degrees of freedom) flight behaviour for multi-rotor drones
-- **PID control loops** — implements proportional-integral-derivative controllers for altitude hold, attitude stabilisation, and position tracking, mirroring real autopilot firmware
-- **Manual & autonomous modes** — accepts joystick-style control inputs for manual piloting and supports scripted waypoint missions for fully autonomous operation
-- **Sensor emulation** — simulates noisy accelerometer, gyroscope, and barometer readings to test sensor-fusion and filtering algorithms under realistic conditions
-- **Collision detection** — tracks the drone's bounding volume against terrain and obstacles, triggering crash events and enabling safe-landing logic testing
-- **Telemetry logging** — records flight state (position, velocity, attitude, motor outputs) at each simulation tick for post-flight analysis and debugging
-
-**Architecture:** C++ simulation loop with a fixed-step physics integrator, a modular controller layer (attitude → velocity → position), and an I/O abstraction that separates simulated sensor feeds from the control algorithms.
+- **HITL integration** — real PX4 flight controller drives a simulated drone in Unreal Engine 5 via AirSim MAVLink bridge
+- **High-frequency telemetry** — 30–120 Hz state updates (position, attitude, velocity) across the full mission area
+- **16 km² environment** — large-scale terrain with realistic atmospheric and sensor simulation
+- **Mission scripting** — C++ API for waypoint navigation, sensor injection, and failure modes
 
 ---
 
-### 🐾 [My Puggle Runner](https://github.com/Superkart/PuglleRunner-)
-> **Unity Game** &nbsp;·&nbsp; Unity · ShaderLab · C#
+### 🔭 [Immersive Cosmology Explorer (ICE)](https://github.com/Superkart/Immersive_Cosmology_Explorer)
+> **VR / Desktop Visualization** &nbsp;·&nbsp; Unity · C# · GPU Compute Shaders · AR Foundation
 
-An endless runner game starring a puggle (beagle–pug mix) protagonist, built in Unity with custom shader effects for a visually distinctive look. Showcases Unity rendering-pipeline customization, procedural obstacle generation, and polished game-loop design.
+Research-grade Unity application for exploring multi-billion-particle cosmological simulations in VR and desktop simultaneously, with real-time state sync at <100ms latency.
 
 **What it does:**
-- **Endless procedural level generation** — spawns and recycles obstacle patterns ahead of the player at runtime, keeping the track fresh and memory footprint constant regardless of playtime
-- **Custom ShaderLab visuals** — hand-written vertex and fragment shaders give the game its distinctive aesthetic, including stylised fur shading on the puggle character and dynamic background effects
-- **Responsive character controller** — tight, frame-rate-independent movement and jump mechanics with coyote-time and input buffering for a satisfying player feel
-- **Escalating difficulty curve** — gradually increases speed and obstacle density over time, maintaining a fair but ever-challenging experience
-- **Score & leaderboard system** — tracks the current run distance and personal best, displayed on a polished HUD with smooth UI animations
-- **Audio & juice** — synchronized sound effects and screen-shake feedback on collisions and power-up pickups amplify the game feel
-
-**Architecture:** Unity MonoBehaviour-driven architecture with an object-pooling system for obstacles and collectibles, a central `GameManager` state machine (idle → playing → game-over), and separated rendering concerns handled through custom shader passes.
+- **Real-time point-cloud rendering** — millions of gas/star/dark-matter particles with GPU compute shaders and perceptually uniform colormaps
+- **Interactive filtering** — define numeric ranges on physical properties; changes reflect instantly in both views
+- **Desktop–VR sync** — asymmetric collaboration at <100ms state latency
+- **Scientific tools** — vector field overlays, time-lapse playback, save/load sessions, annotation sharing
+- **Octree + LOD** — spatial indexing keeps frame rates smooth on massive datasets
 
 ---
 
-### 🛠️ [Reddit Moderator Tool](https://github.com/Superkart/Reddit_Moderator_Tool)
-> **ML / Data Science Tool** &nbsp;·&nbsp; Python · Jupyter Notebook
-
-A machine-learning–powered assistant for Reddit moderation tasks. Uses natural language processing to analyse post and comment content, helping moderators identify rule-breaking content efficiently.
-
-**What it does:**
-- **Automated rule-violation detection** — trains a text classification model on labelled Reddit posts and comments to flag content that likely breaks community rules, dramatically reducing manual review workload
-- **Toxic & spam content filtering** — applies NLP techniques (TF-IDF, word embeddings) to distinguish toxic language, spam patterns, and off-topic submissions from legitimate posts
-- **Sentiment & intent analysis** — scores posts for hostility, harassment indicators, and low-quality signals to surface the most problematic items first
-- **Subreddit-specific fine-tuning** — the model can be retrained on a subreddit's own moderation history, adapting to niche community standards without manual rule writing
-- **Exploratory analysis notebooks** — Jupyter notebooks walk through data collection via the Reddit API (PRAW), feature engineering, model evaluation, and result visualisation for transparent, reproducible experiments
-- **Moderator-friendly output** — produces ranked lists of suspicious content with confidence scores and highlighted trigger phrases, making it easy for humans to audit and act on model predictions
-
-**Architecture:** Python data-science stack (pandas, scikit-learn, matplotlib) with PRAW for Reddit API access; Jupyter notebooks for exploration and training; serialised model artifacts for batch inference on new content.
-
----
-
-### 🏝️ [The Lost Isle](https://github.com/Superkart/The-Lost-Isle)
-> **Unity Game** &nbsp;·&nbsp; Unity · C#
-
-An exploration and adventure game built in Unity, featuring hand-crafted level design, narrative-driven gameplay, and polished mechanics that guide the player through a mysterious island environment.
-
-**What it does:**
-- **Narrative-driven exploration** — players uncover the island's backstory through environmental storytelling, collectible journal entries, and scripted NPC encounters woven into the level design
-- **Hand-crafted level design** — each area of the island is individually designed with distinct biomes, puzzle layouts, and pacing beats to create a varied and memorable journey
-- **Puzzle & interaction systems** — environmental puzzles (pressure plates, rotating mechanisms, hidden switches) gate progression and reward observant players without breaking immersion
-- **Character controller & traversal** — responsive movement with climbing, swimming, and interaction prompts that feel natural across diverse terrain types
-- **Dynamic lighting & atmosphere** — real-time Unity lighting, fog, and ambient audio adapt to the time-of-day cycle and story beats, reinforcing the mysterious island mood
-- **Save & checkpoint system** — persistent save data records story progress, collected items, and explored areas, allowing players to resume exactly where they left off
-
-**Architecture:** Unity scene-management system with a persistent `GameManager` that tracks global state; modular puzzle and trigger components communicate via C# events to keep level logic decoupled from core gameplay systems.
-
----
-
-### 🎲 Unity Game Development Portfolio
+### 🎮 Game Development Portfolio
 
 Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedural generation, and custom shaders:
 
@@ -213,12 +157,62 @@ Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedur
 | [Mario Game](https://github.com/Superkart/Mario-Game) | 2D side-scroller inspired by classic Mario mechanics | Unity · C# |
 | [Quiz Defender](https://github.com/Superkart/QuizDefender) | Educational quiz-based tower defense hybrid | Unity · C# |
 | [Shooter Concept](https://github.com/Superkart/ShooterConcept) | Third-person shooter movement and combat prototype | Unity |
-| [AR Model Viewer](https://github.com/Superkart/ARModelViewer) | Mobile AR app placing a 3D AC motor model in augmented reality | Unity · C# |
 <!-- UNITY-GAMES-END -->
 
 ---
 
-### 💻 Learning & Practice Repositories
+### 🌐 Web Projects
+
+<!-- WEB-PROJECTS-START -->
+| Repo | Description | Tech |
+|---|---|---|
+| [MyExpenseTracker](https://github.com/Superkart/MyExpenseTracker) | Personal finance tracking web app | TypeScript |
+| [PortfolioApp](https://github.com/Superkart/PortfolioApp) | Personal portfolio website | JavaScript |
+| [FirstWebAppDeployed](https://github.com/Superkart/FirstWebAppDeployed) | First deployed web application | Astro |
+| [BasicCounterWebPage](https://github.com/Superkart/BasicCounterWebPage) | Interactive counter page | TypeScript |
+| [DataScience1](https://github.com/Superkart/DataScience1) | This is a repository that contains the homework 1 of my Data Science class | HTML |
+| [hw5](https://github.com/Superkart/hw5) | — | TypeScript |
+<!-- WEB-PROJECTS-END -->
+
+---
+
+### ⚙️ Backend & APIs
+
+<!-- BACKEND-START -->
+| Repo | Description | Tech |
+|---|---|---|
+<!-- BACKEND-END -->
+
+---
+
+### 📊 Data Engineering
+
+<!-- DATA-ENG-START -->
+| Repo | Description | Tech |
+|---|---|---|
+<!-- DATA-ENG-END -->
+
+---
+
+### 🤖 ML & AI Projects
+
+<!-- ML-AI-PROJECTS-START -->
+| Repo | Description | Tech |
+|---|---|---|
+<!-- ML-AI-PROJECTS-END -->
+
+---
+
+### 🔧 Systems & Robotics
+
+<!-- SYSTEMS-START -->
+| Repo | Description | Tech |
+|---|---|---|
+<!-- SYSTEMS-END -->
+
+---
+
+### 💻 Learning & Practice
 
 Structured, version-controlled practice documenting continuous growth:
 
@@ -232,34 +226,12 @@ Structured, version-controlled practice documenting continuous growth:
 
 ---
 
-### 🌐 Web Projects
+### 📁 Other Projects
 
-<!-- WEB-PROJECTS-START -->
+<!-- OTHER-PROJECTS-START -->
 | Repo | Description | Tech |
 |---|---|---|
-| [MyExpenseTracker](https://github.com/Superkart/MyExpenseTracker) | Personal finance tracking web app | TypeScript |
-| [PortfolioApp](https://github.com/Superkart/PortfolioApp) | Personal portfolio website | JavaScript |
-| [FirstWebAppDeployed](https://github.com/Superkart/FirstWebAppDeployed) | First deployed web application | Astro |
-| [BasicCounterWebPage](https://github.com/Superkart/BasicCounterWebPage) | Interactive counter page | TypeScript |
-| [hw5](https://github.com/Superkart/hw5) | — | TypeScript |
-| [uic-hackathon-my-agent](https://github.com/Superkart/uic-hackathon-my-agent) | — | TypeScript |
-<!-- WEB-PROJECTS-END -->
-
----
-
-### 🤖 ML & AI Projects
-
-<!-- ML-AI-PROJECTS-START -->
-| Repo | Description | Tech |
-|---|---|---|
-| [Applied-ML-Case-Studies](https://github.com/Superkart/Applied-ML-Case-Studies) | — | Jupyter Notebook |
-| [DataScience1](https://github.com/Superkart/DataScience1) | This is a repository that contains the homework 1 of my Data Science class | HTML |
-| [ML-Foundations-Python-Numpy](https://github.com/Superkart/ML-Foundations-Python-Numpy) | — | Jupyter Notebook |
-| [ML-From-Scratch-Neural-Networks](https://github.com/Superkart/ML-From-Scratch-Neural-Networks) | — | Jupyter Notebook |
-| [Student_Survey_Analysis](https://github.com/Superkart/Student_Survey_Analysis) | Data analysis project covering survey design, cleaning, and visualization | Python |
-| [SQL_Hackathon](https://github.com/Superkart/SQL_Hackathon) | SQL-based hackathon and data analysis project for a database systems course | SQL |
-| [ShooterConcept](https://github.com/Superkart/ShooterConcept) | This is a repository that contains a third person shooter concept. | — |
-<!-- ML-AI-PROJECTS-END -->
+<!-- OTHER-PROJECTS-END -->
 
 ---
 
@@ -275,4 +247,6 @@ Structured, version-controlled practice documenting continuous growth:
 
 ## 📬 Contact
 
-- **GitHub**: [github.com/Superkart](https://github.com/Superkart)
+📍 Chicago, IL &nbsp;·&nbsp; Open to remote
+📧 [kragi@uic.edu](mailto:kragi@uic.edu)
+🐙 [github.com/Superkart](https://github.com/Superkart)

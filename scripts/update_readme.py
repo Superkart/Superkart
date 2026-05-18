@@ -2,37 +2,19 @@
 """update_readme.py — Automatically appends newly-created GitHub repositories
 to the relevant table sections in README.md.
 
-Existing rows are NEVER modified — the script only appends rows for repos that
-do not yet have a link inside the section.  This preserves all hand-written
-display names, descriptions, and row ordering exactly as the author left them.
+Classification pipeline (in priority order):
+  1. GitHub topics  → exact match against each category's topics set
+  2. Language / name heuristics  → language and name-based rules
+  3. AI classification via GitHub Models (free with GITHUB_TOKEN)
+  4. 'other' catch-all  → nothing is silently dropped
 
-Sections managed (identified by HTML comment markers):
-  - Unity Game Development Portfolio   <!-- UNITY-GAMES-START/END -->
-  - Learning & Practice Repositories   <!-- LEARNING-REPOS-START/END -->
-  - Web Projects                        <!-- WEB-PROJECTS-START/END -->
-    - ML & AI Projects                     <!-- ML-AI-PROJECTS-START/END -->
+Categories are defined in CATEGORIES below. To add a new one:
+  1. Add an entry to CATEGORIES with the required fields.
+  2. Add matching <!-- KEY-START --> / <!-- KEY-END --> markers to README.md.
 
-Category rules (topics take priority over heuristics):
-  unity    — topics: unity, game-development, game, unity3d
-             OR language C# / ShaderLab
-             OR description contains "unity"
-  learning — topics: learning, practice, tutorial, education
-             OR name contains: journey, learn, practice, exercise, tutorial
-             OR language C++
-  ml_ai    — topics: ml, ai, machine-learning, deep-learning,
-                       artificial-intelligence, data-science, nlp, computer-vision
-                       OR language Jupyter Notebook
-             OR description contains ML/AI/data-science terms
-                       (any non-unity language)
-                       OR name contains: ml, ai, machine-learning, deep-learning,
-                       neural, nlp, vision, datascience, sql, database
-  web      — topics: web, web-app, frontend, backend, website
-             OR language TypeScript / JavaScript / HTML / CSS
-
-Repos listed under "Featured Projects" are excluded from all auto-managed
-tables so their hand-written descriptions are never touched.  Use
-validate_featured_repos() to check for drift between FEATURED_REPOS and the
-README featured section.
+Existing rows are NEVER modified — append-only.
+Repos already linked anywhere in the README are skipped entirely.
+Repos in FEATURED_REPOS are excluded from all auto-managed tables.
 """
 
 import os
@@ -50,35 +32,142 @@ _BASE_HEADERS = {"Accept": "application/vnd.github+json"}
 if GITHUB_TOKEN:
     _BASE_HEADERS["Authorization"] = f"Bearer {GITHUB_TOKEN}"
 
-# Repos whose entries are hand-written in the "Featured Projects" section.
-# They are intentionally excluded from the auto-managed tables below.
-# A project belongs here when it has a substantial, hand-authored description
-# in the "Featured Projects" section of README.md.  Use validate_featured_repos()
-# to detect any drift between this set and the README.
 FEATURED_REPOS: frozenset = frozenset({
+    # Hand-written featured entries — excluded from all auto-managed tables.
+    # Update REPO_NAME values once those repos are created on GitHub.
     "Steam_Accountabilibuddy",
     "Immersive_Cosmology_Explorer",
-    "Pandas_Provenance",
-    "Store_Spring_Boot",
-    "AirSimApiCpp",
     "Drone_Simulator",
-    "PuglleRunner-",
-    "Reddit_Moderator_Tool",
-    "The-Lost-Isle",
-    USERNAME,  # the profile repo itself
+    "Incident_Response_Agent",
+    "RequirementsEngineering_Agents",
+    USERNAME,
 })
 
-# Marker that separates the hand-written Featured Projects section from the
-# auto-managed tables.  Everything before this line is considered "featured".
-FEATURED_SECTION_END_MARKER = "<!-- UNITY-GAMES-START -->"
-
-# Section markers — these must match the markers inside README.md exactly.
-MARKERS: dict[str, tuple[str, str]] = {
-    "unity":    ("<!-- UNITY-GAMES-START -->",   "<!-- UNITY-GAMES-END -->"),
-    "learning": ("<!-- LEARNING-REPOS-START -->", "<!-- LEARNING-REPOS-END -->"),
-    "web":      ("<!-- WEB-PROJECTS-START -->",   "<!-- WEB-PROJECTS-END -->"),
-    "ml_ai":    ("<!-- ML-AI-PROJECTS-START -->", "<!-- ML-AI-PROJECTS-END -->"),
+# ── Category definitions ──────────────────────────────────────────────────────
+# Add a new category by adding an entry here + markers in README.md.
+# 'columns' controls the table shape: 3 items → 3-column row, 2 items → 2-column row.
+CATEGORIES: dict[str, dict] = {
+    "unity": {
+        "name": "Game Development",
+        "start": "<!-- UNITY-GAMES-START -->",
+        "end":   "<!-- UNITY-GAMES-END -->",
+        "columns": ["Project", "Description", "Tech"],
+        "topics": {"unity", "game-development", "game", "unity3d"},
+        "languages": {"C#", "ShaderLab"},
+        "ai_description": (
+            "Unity game development, C#, ShaderLab, game engines, "
+            "interactive simulations, 2D/3D games"
+        ),
+    },
+    "web": {
+        "name": "Web Projects",
+        "start": "<!-- WEB-PROJECTS-START -->",
+        "end":   "<!-- WEB-PROJECTS-END -->",
+        "columns": ["Repo", "Description", "Tech"],
+        "topics": {"web", "web-app", "frontend", "website", "react", "astro", "svelte", "nextjs"},
+        "languages": {"TypeScript", "JavaScript", "HTML", "CSS", "Astro"},
+        "ai_description": (
+            "Web applications, frontend, full-stack web, React, Astro, Angular, "
+            "HTML/CSS/TypeScript/JavaScript — NOT backend-only services"
+        ),
+    },
+    "backend": {
+        "name": "Backend & APIs",
+        "start": "<!-- BACKEND-START -->",
+        "end":   "<!-- BACKEND-END -->",
+        "columns": ["Repo", "Description", "Tech"],
+        "topics": {"backend", "api", "rest-api", "spring-boot", "microservices", "server", "grpc"},
+        "languages": {"Java", "Go", "Rust", "Kotlin", "Scala", "PHP", "Ruby"},
+        "ai_description": (
+            "Backend services, REST APIs, Spring Boot, Java server-side, Go servers, "
+            "Rust servers, microservices, gRPC, databases — server-side only"
+        ),
+    },
+    "data_eng": {
+        "name": "Data Engineering",
+        "start": "<!-- DATA-ENG-START -->",
+        "end":   "<!-- DATA-ENG-END -->",
+        "columns": ["Repo", "Description", "Tech"],
+        "topics": {
+            "data-engineering", "etl", "pipeline", "data-pipeline",
+            "spark", "airflow", "kafka", "data-processing", "dbt",
+        },
+        "languages": set(),
+        "ai_description": (
+            "Data pipelines, ETL, data processing, Apache Spark, Airflow, Kafka, "
+            "data warehousing, ingestion, batch/stream processing — "
+            "NOT machine learning or AI model training"
+        ),
+    },
+    "ml_ai": {
+        "name": "ML & AI Projects",
+        "start": "<!-- ML-AI-PROJECTS-START -->",
+        "end":   "<!-- ML-AI-PROJECTS-END -->",
+        "columns": ["Repo", "Description", "Tech"],
+        "topics": {
+            "ml", "ai", "machine-learning", "deep-learning",
+            "artificial-intelligence", "data-science", "nlp", "computer-vision", "llm",
+        },
+        "languages": {"Jupyter Notebook"},
+        "ai_description": (
+            "Machine learning, deep learning, AI, neural networks, NLP, "
+            "computer vision, LLMs, data science models, training, inference, datasets"
+        ),
+    },
+    "systems": {
+        "name": "Systems & Robotics",
+        "start": "<!-- SYSTEMS-START -->",
+        "end":   "<!-- SYSTEMS-END -->",
+        "columns": ["Repo", "Description", "Tech"],
+        "topics": {
+            "robotics", "simulation", "autonomous", "embedded",
+            "systems-programming", "drone", "ros", "unreal-engine",
+        },
+        "languages": {"C++", "C"},
+        "ai_description": (
+            "Systems programming, robotics, simulation, autonomous vehicles/drones, "
+            "C/C++, embedded systems, AirSim, Unreal Engine, ROS, low-level programming"
+        ),
+    },
+    "learning": {
+        "name": "Learning & Practice",
+        "start": "<!-- LEARNING-REPOS-START -->",
+        "end":   "<!-- LEARNING-REPOS-END -->",
+        "columns": ["Repo", "Focus"],
+        "topics": {"learning", "practice", "tutorial", "education", "exercises", "leetcode"},
+        "languages": set(),
+        "ai_description": (
+            "Learning repositories, practice exercises, tutorials, educational projects, "
+            "coding challenges, LeetCode, following along with courses"
+        ),
+    },
+    "other": {
+        "name": "Other Projects",
+        "start": "<!-- OTHER-PROJECTS-START -->",
+        "end":   "<!-- OTHER-PROJECTS-END -->",
+        "columns": ["Repo", "Description", "Tech"],
+        "topics": set(),
+        "languages": set(),
+        "ai_description": "",  # catch-all — not used for AI prompting
+    },
 }
+
+# ── Keyword sets used by heuristics ───────────────────────────────────────────
+_ML_AI_DESC_KEYWORDS: frozenset = frozenset({
+    "machine learning", "deep learning", "artificial intelligence",
+    "neural", "transformer", "llm", "nlp", "computer vision",
+    "model training", "inference", "dataset", "classifier",
+})
+
+_DATA_ENG_DESC_KEYWORDS: frozenset = frozenset({
+    "pipeline", "etl", "data engineering", "data pipeline",
+    "airflow", "spark", "kafka", "warehouse", "ingestion",
+    "batch processing", "stream processing", "dbt",
+})
+
+_LEARNING_NAME_KEYWORDS: frozenset = frozenset({
+    "journey", "learn", "practice", "exercise", "tutorial",
+})
 
 
 # ── GitHub API helpers ────────────────────────────────────────────────────────
@@ -112,173 +201,128 @@ def get_topics(repo_name: str) -> set[str]:
     if not resp.ok:
         print(
             f"WARNING: could not fetch topics for '{repo_name}' "
-            f"(HTTP {resp.status_code}) — falling back to heuristics",
+            f"(HTTP {resp.status_code}) — skipping topics",
             file=sys.stderr,
         )
         return set()
     return set(resp.json().get("names", []))
 
 
-# ── Categorisation ────────────────────────────────────────────────────────────
-def classify(repo: dict, topics: set[str]) -> str | None:
-    """Return 'unity', 'learning', 'web', 'ml_ai', or None if uncategorised."""
+# ── Classification ────────────────────────────────────────────────────────────
+def _classify_by_heuristics(repo: dict, topics: set[str]) -> str | None:
+    """Return a category key via topic/language/name rules, or None if no match."""
     language = repo.get("language") or ""
     name_lower = repo["name"].lower()
-    description_lower = (repo.get("description") or "").lower()
+    desc_lower = (repo.get("description") or "").lower()
 
-    # Topics take highest priority (explicit beats heuristic)
-    if topics & {"unity", "game-development", "game", "unity3d"}:
-        return "unity"
-    if topics & {"learning", "practice", "tutorial", "education"}:
-        return "learning"
-    if topics & {
-        "ml",
-        "ai",
-        "machine-learning",
-        "deep-learning",
-        "artificial-intelligence",
-        "data-science",
-        "nlp",
-        "computer-vision",
-    }:
-        return "ml_ai"
-    if topics & {"web", "web-app", "frontend", "backend", "website"}:
-        return "web"
+    # 1. GitHub topics — highest priority, beats everything below
+    for key, cat in CATEGORIES.items():
+        if key == "other":
+            continue
+        if topics & cat["topics"]:
+            return key
 
-    # Language / name heuristics
-    if language in ("C#", "ShaderLab"):
-        return "unity"
-    if "unity" in description_lower:
-        return "unity"
-    if language == "Jupyter Notebook":
-        return "ml_ai"
-    if language not in ("C#", "ShaderLab") and any(
-        k in description_lower
-        for k in (
-            "machine learning",
-            "deep learning",
-            "artificial intelligence",
-            "data science",
-            "data analysis",
-            "ai",
-            "ml",
-            "model",
-            "training",
-            "inference",
-            "dataset",
-            "transformer",
-            "neural",
-            "computer vision",
-            "nlp",
-        )
-    ):
-        return "ml_ai"
-    if any(
-        k in name_lower
-        for k in (
-            "machine-learning",
-            "deep-learning",
-            "datascience",
-            "data-science",
-            "neural",
-            "vision",
-            "nlp",
-            "_ml",
-            "-ml",
-            "_ai",
-            "-ai",
-            "sql",
-            "database",
-        )
-    ) and language != "Python":
-        return "ml_ai"
-    if any(k in name_lower for k in ("journey", "learn", "practice", "exercise", "tutorial")):
+    # 2. Name-based learning heuristic — beats language (e.g. Cpp_Journey → learning, not systems)
+    if any(k in name_lower for k in _LEARNING_NAME_KEYWORDS):
         return "learning"
-    if language in ("TypeScript", "JavaScript", "HTML", "CSS"):
-        return "web"
-    if language == "C++":
-        return "learning"
+
+    # 3. Explicit language → category mappings
+    for key in ("unity", "web", "backend", "systems", "ml_ai"):
+        if language in CATEGORIES[key]["languages"]:
+            return key
+
+    # 4. Python needs description keywords to disambiguate data-eng vs ml_ai
+    if language == "Python":
+        has_data = any(k in desc_lower for k in _DATA_ENG_DESC_KEYWORDS)
+        has_ml = any(k in desc_lower for k in _ML_AI_DESC_KEYWORDS)
+        if has_data and not has_ml:
+            return "data_eng"
+        if has_ml:
+            return "ml_ai"
 
     return None
 
 
-# ── Already-linked repo detection ─────────────────────────────────────────────
+def classify_with_ai(repo: dict, topics: set[str]) -> str | None:
+    """Classify using GitHub Models (free with GITHUB_TOKEN). Returns category key or None."""
+    if not GITHUB_TOKEN:
+        return None
+
+    try:
+        from openai import OpenAI  # noqa: PLC0415
+    except ImportError:
+        print("WARNING: openai package not installed — skipping AI classification", file=sys.stderr)
+        return None
+
+    options = "\n".join(
+        f'"{key}": {cat["ai_description"]}'
+        for key, cat in CATEGORIES.items()
+        if key != "other" and cat["ai_description"]
+    )
+    prompt = (
+        "Classify this GitHub repository into exactly one of the listed categories.\n\n"
+        f"Repository:\n"
+        f"  Name: {repo['name']}\n"
+        f"  Language: {repo.get('language') or 'unknown'}\n"
+        f"  Description: {repo.get('description') or 'none'}\n"
+        f"  Topics: {', '.join(topics) or 'none'}\n\n"
+        f"Categories:\n{options}\n"
+        '"other": does not fit any category above\n\n'
+        'Reply with ONLY the category key (e.g. "web"), nothing else.'
+    )
+
+    try:
+        client = OpenAI(base_url="https://models.inference.ai.azure.com", api_key=GITHUB_TOKEN)
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=10,
+            temperature=0,
+        )
+        result = response.choices[0].message.content.strip().lower().strip("\"'")
+        return result if result in CATEGORIES else "other"
+    except Exception as exc:
+        print(f"WARNING: AI classification failed for '{repo['name']}': {exc}", file=sys.stderr)
+        return None
+
+
+def classify(repo: dict, topics: set[str]) -> str:
+    """Return a category key. Always returns a valid key — falls back to 'other'."""
+    result = _classify_by_heuristics(repo, topics)
+    if result:
+        return result
+    print(f"  [AI] classifying '{repo['name']}'...", file=sys.stderr)
+    return classify_with_ai(repo, topics) or "other"
+
+
+# ── README helpers ────────────────────────────────────────────────────────────
 def get_already_linked(content: str, start: str, end: str) -> set[str]:
-    """Return the repo names whose GitHub URLs appear inside a section."""
+    """Return repo names whose GitHub URLs appear inside a section."""
     pattern = re.compile(re.escape(start) + r"(.*?)" + re.escape(end), re.DOTALL)
     m = pattern.search(content)
     if not m:
         print(f"WARNING: markers not found — '{start}'", file=sys.stderr)
         return set()
-    section_body = m.group(1)
     link_re = re.compile(rf"https://github\.com/{re.escape(USERNAME)}/([^)]+)\)")
-    return {lm.group(1) for lm in link_re.finditer(section_body)}
-
-
-# ── New-row builders ──────────────────────────────────────────────────────────
-def _tech_label(repo: dict, category: str) -> str:
-    language = repo.get("language") or "—"
-    if category == "unity":
-        return f"Unity · {language}" if language != "—" else "Unity"
-    return language
+    return {lm.group(1) for lm in link_re.finditer(m.group(1))}
 
 
 def build_new_row(repo: dict, category: str) -> str:
-    """Build a single table row for a brand-new repo, matching existing style."""
+    """Build a Markdown table row for a new repo, matching each section's column style."""
+    cat = CATEGORIES[category]
     name = repo["name"]
     url = f"https://github.com/{USERNAME}/{name}"
     desc = (repo.get("description") or "—").strip()
-    if category == "unity":
-        return f"| [{name}]({url}) | {desc} | {_tech_label(repo, 'unity')} |"
-    if category == "learning":
-        return f"| [{name}]({url}) | {desc} |"
-    if category == "ml_ai":
-        tech = repo.get("language") or "—"
+    language = repo.get("language") or "—"
+
+    if len(cat["columns"]) == 3:
+        tech = (f"Unity · {language}" if language != "—" else "Unity") if category == "unity" else language
         return f"| [{name}]({url}) | {desc} | {tech} |"
-    # web
-    tech = repo.get("language") or "—"
-    return f"| [{name}]({url}) | {desc} | {tech} |"
+    return f"| [{name}]({url}) | {desc} |"
 
 
-# ── Featured-projects integrity check ────────────────────────────────────────
-def validate_featured_repos(content: str) -> list[str]:
-    """Return a list of warning strings for any FEATURED_REPOS/README mismatch.
-
-    A project is considered worthy of the Featured Projects section when it has
-    a hand-written entry (i.e. its GitHub URL appears in the text before the
-    first auto-managed table marker).  This function reports:
-      • repos in FEATURED_REPOS that have no hand-written entry in README.md
-      • repos with a hand-written featured entry that are not in FEATURED_REPOS
-        (they would be duplicated by the auto-managed tables)
-
-    The check intentionally excludes the profile repo (USERNAME) because that
-    repo represents the README itself and needs no featured entry.
-    """
-    featured_text_end = content.find(FEATURED_SECTION_END_MARKER)
-    if featured_text_end == -1:
-        return [f"WARNING: '{FEATURED_SECTION_END_MARKER}' not found in README — skipping featured validation"]
-
-    featured_section = content[:featured_text_end]
-    link_re = re.compile(rf"https://github\.com/{re.escape(USERNAME)}/([^\s)]+)")
-    linked_repos: set[str] = {m.group(1) for m in link_re.finditer(featured_section)}
-
-    expected = FEATURED_REPOS - {USERNAME}
-    warnings: list[str] = []
-    for repo in sorted(expected - linked_repos):
-        warnings.append(
-            f"WARNING: '{repo}' is in FEATURED_REPOS but has no hand-written entry in the Featured Projects section"
-        )
-    for repo in sorted(linked_repos - expected):
-        warnings.append(
-            f"WARNING: '{repo}' has a featured entry in README.md but is not in FEATURED_REPOS — "
-            "it may be duplicated by the auto-managed tables"
-        )
-    return warnings
-
-
-# ── README update (append-only) ───────────────────────────────────────────────
 def insert_rows_before_end(content: str, end_marker: str, new_rows: list[str]) -> str:
-    """Insert *new_rows* immediately before *end_marker*, preserving everything else."""
+    """Insert new_rows immediately before end_marker, preserving everything else."""
     rows_text = "\n".join(new_rows) + "\n"
     return content.replace(end_marker, rows_text + end_marker, 1)
 
@@ -292,42 +336,43 @@ def main() -> None:
     with open(README_PATH, encoding="utf-8") as fh:
         content = fh.read()
 
-    for warning in validate_featured_repos(content):
-        print(warning, file=sys.stderr)
-
-    # Snapshot which repos are already represented in each section
+    # Build per-section and global already-linked sets
     already_linked: dict[str, set[str]] = {
-        cat: get_already_linked(content, *markers)
-        for cat, markers in MARKERS.items()
+        cat: get_already_linked(content, CATEGORIES[cat]["start"], CATEGORIES[cat]["end"])
+        for cat in CATEGORIES
     }
+    all_linked: set[str] = set().union(*already_linked.values())
 
-    new_rows: dict[str, list[str]] = {
-        "unity": [],
-        "learning": [],
-        "web": [],
-        "ml_ai": [],
-    }
+    new_rows: dict[str, list[str]] = {cat: [] for cat in CATEGORIES}
 
     for repo in all_repos:
         name = repo["name"]
         if name in FEATURED_REPOS or repo.get("fork") or repo.get("archived"):
             continue
+        if name in all_linked:
+            continue
         topics = get_topics(name)
         category = classify(repo, topics)
-        if category not in new_rows:
-            continue
-        if name not in already_linked[category]:
-            new_rows[category].append(build_new_row(repo, category))
+        new_rows[category].append(build_new_row(repo, category))
+        print(f"  [{CATEGORIES[category]['name']}] + {name}")
 
     for cat, rows in new_rows.items():
-        print(f"  New {cat} repos to add: {len(rows)}")
         if rows:
-            content = insert_rows_before_end(content, MARKERS[cat][1], rows)
+            content = insert_rows_before_end(content, CATEGORIES[cat]["end"], rows)
 
     with open(README_PATH, "w", encoding="utf-8") as fh:
         fh.write(content)
 
-    print("README.md updated.")
+    total = sum(len(r) for r in new_rows.values())
+    print(f"\nREADME.md updated — {total} new row(s) added.")
+
+    other_count = len(new_rows.get("other", []))
+    if other_count:
+        print(
+            f"  NOTE: {other_count} repo(s) landed in 'Other Projects'. "
+            "Add GitHub topics to them for better auto-categorisation.",
+            file=sys.stderr,
+        )
 
 
 if __name__ == "__main__":
