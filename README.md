@@ -157,6 +157,7 @@ Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedur
 | [Mario Game](https://github.com/Superkart/Mario-Game) | 2D side-scroller inspired by classic Mario mechanics | Unity · C# |
 | [Quiz Defender](https://github.com/Superkart/QuizDefender) | Educational quiz-based tower defense hybrid | Unity · C# |
 | [Shooter Concept](https://github.com/Superkart/ShooterConcept) | Third-person shooter movement and combat prototype | Unity |
+| [ARModelViewer](https://github.com/Superkart/ARModelViewer) | First AR project that can be used to view a AC motor and its parts by placing it midair using mobile phone. | Unity · C# |
 <!-- UNITY-GAMES-END -->
 
 ---
@@ -172,6 +173,7 @@ Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedur
 | [BasicCounterWebPage](https://github.com/Superkart/BasicCounterWebPage) | Interactive counter page | TypeScript |
 | [DataScience1](https://github.com/Superkart/DataScience1) | This is a repository that contains the homework 1 of my Data Science class | HTML |
 | [hw5](https://github.com/Superkart/hw5) | — | TypeScript |
+| [uic-hackathon-my-agent](https://github.com/Superkart/uic-hackathon-my-agent) | — | TypeScript |
 <!-- WEB-PROJECTS-END -->
 
 ---
@@ -181,6 +183,9 @@ Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedur
 <!-- BACKEND-START -->
 | Repo | Description | Tech |
 |---|---|---|
+| [hotel_management_app](https://github.com/Superkart/hotel_management_app) | — | Java |
+| [Store_Spring_Boot](https://github.com/Superkart/Store_Spring_Boot) | — | Java |
+| [SteamLens](https://github.com/Superkart/SteamLens) | A web app that connects to a user’s game store account to analyze their owned and wishlist games. It identifies unplayed titles similar to wishlist games, tracks discounts, and visualizes gaming data. Built with React, Astro, Cloudflare Workers, and Wrangler for secure, modern, and fast web deployment. | Java |
 <!-- BACKEND-END -->
 
 ---
@@ -199,6 +204,11 @@ Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedur
 <!-- ML-AI-PROJECTS-START -->
 | Repo | Description | Tech |
 |---|---|---|
+| [Applied-ML-Case-Studies](https://github.com/Superkart/Applied-ML-Case-Studies) | — | Jupyter Notebook |
+| [ML-Foundations-Python-Numpy](https://github.com/Superkart/ML-Foundations-Python-Numpy) | — | Jupyter Notebook |
+| [ML-From-Scratch-Neural-Networks](https://github.com/Superkart/ML-From-Scratch-Neural-Networks) | — | Jupyter Notebook |
+| [Reddit_Moderator_Tool](https://github.com/Superkart/Reddit_Moderator_Tool) | — | Jupyter Notebook |
+| [Student_Survey_Analysis](https://github.com/Superkart/Student_Survey_Analysis) | A simulation of a real-world student data analysis internship using Google Forms, Python (pandas), and Google Colab. This project walks through survey design, data cleaning, visualization, and reporting — based on an internship experience at Manipal University. | Jupyter Notebook |
 <!-- ML-AI-PROJECTS-END -->
 
 ---
@@ -208,6 +218,7 @@ Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedur
 <!-- SYSTEMS-START -->
 | Repo | Description | Tech |
 |---|---|---|
+| [AirSimApiCpp](https://github.com/Superkart/AirSimApiCpp) | AirSim Api controls using external c++ project | C++ |
 <!-- SYSTEMS-END -->
 
 ---
@@ -231,6 +242,9 @@ Structured, version-controlled practice documenting continuous growth:
 <!-- OTHER-PROJECTS-START -->
 | Repo | Description | Tech |
 |---|---|---|
+| [OpenCV_Python](https://github.com/Superkart/OpenCV_Python) | Just learning how to implement cv from some studying. | Python |
+| [Pandas_Provenance](https://github.com/Superkart/Pandas_Provenance) | # Pandas Provenance Tracker  ## Description This project enables manual provenance tracking for data transformations in the pandas library. It logs operations like filtering and joins, helping users trace data changes at each step. Provenance tracking supports transparency, reproducibility, and accountability in data workflows. | Python |
+| [SQL_Hackathon](https://github.com/Superkart/SQL_Hackathon) | — | — |
 <!-- OTHER-PROJECTS-END -->
 
 ---
