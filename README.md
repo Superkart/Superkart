@@ -185,6 +185,7 @@ Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedur
 |---|---|---|
 | [hotel_management_app](https://github.com/Superkart/hotel_management_app) | — | Java |
 | [Store_Spring_Boot](https://github.com/Superkart/Store_Spring_Boot) | — | Java |
+| [SteamLens](https://github.com/Superkart/SteamLens) | A web app that connects to a user’s game store account to analyze their owned and wishlist games. It identifies unplayed titles similar to wishlist games, tracks discounts, and visualizes gaming data. Built with React, Astro, Cloudflare Workers, and Wrangler for secure, modern, and fast web deployment. | Java |
 <!-- BACKEND-END -->
 
 ---
