@@ -96,7 +96,7 @@ Rigorous benchmark comparing single-agent vs multi-agent LLM approaches for requ
 
 ---
 
-### 🎮 [Steam Accountabilibuddy](https://github.com/Superkart/Steam_Accountabilibuddy)
+### 🎮 [Steam Accountabilibuddy](https://github.com/Superkart/SteamLens)
 > **Full-Stack Web App** &nbsp;·&nbsp; Java · Spring Boot · React · PostgreSQL · GCP
 
 A Steam library manager that fights backlog overload and tracks deals. Authenticates via Steam OpenID and analyzes your full library automatically.
