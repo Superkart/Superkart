@@ -58,10 +58,20 @@ def apply_rename(content: str, old_name: str, new_name: str) -> str:
     # Update every occurrence of the old URL
     content = content.replace(old_url, new_url)
 
-    # Update display text only when it is the bare repo name (auto-managed rows)
+    # Update display text when it exactly matches the old repo name (auto-managed rows)
     content = re.sub(
         rf"\[{re.escape(old_name)}\]\({re.escape(new_url)}\)",
         f"[{new_name}]({new_url})",
+        content,
+    )
+
+    # Update display text in featured headings even when it doesn't match the raw
+    # repo name — e.g. "### 🚁 [Drone Simulator](url)" where display ≠ "Drone_Simulator".
+    # Replace [Any Display Text](new_url) with [new_name humanised](new_url).
+    human_name = new_name.replace("_", " ").replace("-", " ")
+    content = re.sub(
+        rf"\[([^\]]+)\]\({re.escape(new_url)}\)",
+        f"[{human_name}]({new_url})",
         content,
     )
     return content
