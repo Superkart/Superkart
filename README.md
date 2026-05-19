@@ -96,7 +96,7 @@ Rigorous benchmark comparing single-agent vs multi-agent LLM approaches for requ
 
 ---
 
-### 🎮 [Steam Accountabilibuddy](https://github.com/Superkart/SteamLens)
+### 🎮 [SteamLens](https://github.com/Superkart/SteamLens)
 > **Full-Stack Web App** &nbsp;·&nbsp; Java · Spring Boot · React · PostgreSQL · GCP
 
 A Steam library manager that fights backlog overload and tracks deals. Authenticates via Steam OpenID and analyzes your full library automatically.
@@ -146,7 +146,7 @@ Games and interactive simulations spanning 2D/3D gameplay, physics, AI, procedur
 | Project | Description | Tech |
 |---|---|---|
 | [MiniTankMania](https://github.com/Superkart/MiniTankMania) | 3D wave-based tank combat — miniature player tank vs escalating enemy waves | Unity · C# |
-| [SimpleFollowAI](https://github.com/Superkart/SimpleFollowAi) | Stealth-style game with NPC proximity-detection and patrol AI | Unity · C# |
+| [SimpleFollowAi](https://github.com/Superkart/SimpleFollowAi) | Stealth-style game with NPC proximity-detection and patrol AI | Unity · C# |
 | [Bounce Ball](https://github.com/Superkart/Bounce-Ball) | Angry-Birds-style 2D projectile physics puzzle | Unity · C# |
 | [The Lost Isle](https://github.com/Superkart/The-Lost-Isle) | Exploration / adventure game | Unity · C# |
 | [Random Puzzle Generator](https://github.com/Superkart/Random-PuzzleGenerator) | Procedurally generates color-based puzzles at runtime | Unity · C# |
