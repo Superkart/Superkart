@@ -84,7 +84,7 @@ Production-grade incident response automation: a Prometheus alert fires and trig
 
 ---
 
-### 📐 [RE Elicitation Agents](https://github.com/Superkart/RequirementsEngineering_Agents)
+### 📐 [ReqArchitect AI](https://github.com/Superkart/ReqArchitect-AI)
 > **AI Research** &nbsp;·&nbsp; LangGraph · Claude API · sentence-transformers
 
 Rigorous benchmark comparing single-agent vs multi-agent LLM approaches for requirements elicitation, run against two real-world RE datasets.
