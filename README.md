@@ -245,6 +245,7 @@ Structured, version-controlled practice documenting continuous growth:
 | [OpenCV_Python](https://github.com/Superkart/OpenCV_Python) | Just learning how to implement cv from some studying. | Python |
 | [Pandas_Provenance](https://github.com/Superkart/Pandas_Provenance) | # Pandas Provenance Tracker  ## Description This project enables manual provenance tracking for data transformations in the pandas library. It logs operations like filtering and joins, helping users trace data changes at each step. Provenance tracking supports transparency, reproducibility, and accountability in data workflows. | Python |
 | [SQL_Hackathon](https://github.com/Superkart/SQL_Hackathon) | — | — |
+| [ReqArchitect-AI](https://github.com/Superkart/ReqArchitect-AI) | — | Python |
 <!-- OTHER-PROJECTS-END -->
 
 ---
